@@ -1,7 +1,7 @@
-
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 :root {
     --bg: #ECF8F8; /* light base color */
-    --text: #1D8A7A; /* darkest teal for text */
+    --text-dark: #1D8A7A; /* darkest teal for text */
 }
 
 body, html {
@@ -10,7 +10,6 @@ body, html {
     font-family: 'Inter', sans-serif;
     overflow: hidden;
 }
-
 /* THE ANIMATED MESH */
 .mesh-bg {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -36,8 +35,6 @@ body, html {
 
 /* content Overlay */
 .container {
-    max-width: 100%;
-    padding: 0;
     position: relative; z-index: 1;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -47,8 +44,15 @@ body, html {
 }
 
 h1 { 
-    font-family: 'Playfair Display', serif; font-size: 3.5rem; 
-    margin: 10px 0; color: #1D8A7A; 
+    font-family: 'EB Garamond', serif; 
+    font-size: 3.5rem; 
+    margin: 10px 0; 
+    font-weight: 600;
+    color: var(--text-dark); 
+    line-height: 1.2;
+    letter-spacing: -0.5px; /* Pulls the letters slightly closer */
+    margin: 20px 0;
+    opacity: 0.9;
 }
 
 p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
@@ -59,9 +63,33 @@ p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
     letter-spacing: 2px; text-transform: uppercase; 
 }
 
-.contact-box a { 
-    display: block; color: #298A90; text-decoration: none; 
-    margin: 8px 0; font-weight: 500; transition: 0.3s;
+.contact-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    align-items: center;
 }
 
-.contact-box a:hover { color: #22E1DF; transform: translateX(5px); }
+.contact-box a { 
+    color: var(--text-dark); 
+    text-decoration: none; 
+    font-size: 1.05rem;
+    font-weight: 400; 
+    opacity: 0.6; 
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform, opacity, filter, letter-spacing;
+}
+.contact-box:hover a {
+    opacity: 0.2;
+    filter: blur(1.5px); 
+}
+.contact-box a:hover { 
+    opacity: 1; 
+    filter: blur(0px);
+    transform: scale(1.04) translateZ(0);
+    letter-spacing: 1.5px; 
+}
