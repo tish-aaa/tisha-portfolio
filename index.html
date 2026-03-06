@@ -13,11 +13,35 @@
         <div class="badge">Digital Space Coming Soon</div>
         <h1>Tisha Sharma</h1>
         <p>Full-Stack Developer & Creative Thinker.</p>
-        <div class="contact-box">
-            <a href="mailto:hello@tishasharma.in">hello@tishasharma.in</a>
-            <a href="mailto:contact@tishasharma.in">contact@tishasharma.in</a>
-            <a href="mailto:hie@tishasharma.in">hie@tishasharma.in</a>
+        <div class="contact-wrapper">
+            <div class="avatar-popup">
+                <div class="speech-bubble">Hii! ✨</div>
+                <img src="your-waving-avatar.gif" alt="Tisha Waving">
+            </div>
+
+            <div class="contact-box">
+                <a href="mailto:hello@tishasharma.in">hello@tishasharma.in</a>
+                <a href="mailto:contact@tishasharma.in">contact@tishasharma.in</a>
+                <a href="mailto:hie@tishasharma.in">hie@tishasharma.in</a>
+            </div>
+
+            <audio id="hoverSound" src="assets/audio/pop-sound.mp3" preload="auto"></audio>
         </div>
     </div>
   </body>
+    <script>
+        const contactWrapper = document.querySelector('.contact-wrapper');
+        const popSound = document.getElementById('hoverSound');
+
+        // Reduce the volume so it isn't deafening!
+        popSound.volume = 0.3; 
+
+        contactWrapper.addEventListener('mouseenter', () => {
+            popSound.currentTime = 0; // Resets the sound if triggered quickly
+            // We use a promise catch because browsers might block the audio
+            popSound.play().catch(error => {
+                console.log("Browser blocked the audio from playing automatically.");
+            });
+        });
+    </script>
 </html>
