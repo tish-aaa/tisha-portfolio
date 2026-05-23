@@ -7,7 +7,7 @@
 body, html {
     margin: 0; padding: 0; width: 100%; height: 100%;
     background-color: var(--bg);
-    font-family: 'Inter', sans-serif;
+    font-family: "EB Garamond", serif;
     overflow: hidden;
 }
 /* THE ANIMATED MESH */
@@ -92,4 +92,27 @@ p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
     filter: blur(0px);
     transform: scale(1.04) translateZ(0);
     letter-spacing: 1.5px; 
+}
+
+/* NEW DESIGN */
+#homepage {
+    position: relative;
+}
+#homepage #earth_surface {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+#homepage #earth_surface .year {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
 }
