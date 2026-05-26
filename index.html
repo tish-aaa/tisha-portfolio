@@ -21,8 +21,25 @@
       <div id="experience"></div>
       <div id="earth_surface">
         <div class="year">May, 2020</div>
-        <img src="/assets/background.svg" alt="We hustle on this earth, but what about everything else?" class="bg">
+        <div class="earth-sphere-wrapper">
+          <img src="/assets/entire-earth-2.svg" alt="We hustle on this earth, but what about everything else?" id="earth360Rotate">
+        </div>
       </div>
     </div>
   </body>
 </html>
+<script>
+let rotation = 0;
+const image = document.getElementById('earth360Rotate');
+
+window.addEventListener('wheel', (event) => {
+    // Standardize scroll speed across different trackpads/mice
+    const delta = Math.sign(event.deltaY);
+    
+    // Smoothly accumulate rotation steps
+    rotation += delta * 1.5; 
+    
+    // Apply the seamless rotation
+    image.style.transform = `rotate(${rotation}deg)`;
+});
+</script>
