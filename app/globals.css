@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #0A1F1D;
+}
+
+::selection {
+  background: #1FDCD2;
+  color: #0A1F1D;
+}
+
+.contact-box a {
+  opacity: 0.6;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform, opacity, filter, letter-spacing;
+}
+
+.contact-box:hover a {
+  opacity: 0.2;
+  filter: blur(1.5px);
+}
+
+.contact-box a:hover {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1.04) translateZ(0);
+  letter-spacing: 1.5px;
+}
