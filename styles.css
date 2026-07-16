@@ -110,7 +110,7 @@ p {
 .social-icons {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 25px;
     margin-top: 15px;
 }
 .social-icons a i {
