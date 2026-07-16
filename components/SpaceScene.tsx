@@ -42,11 +42,11 @@ export default function SpaceScene() {
     // the golden-angle (Fibonacci sphere) method, silver with a scatter
     // of accent-cyan "active node" points
     const globeGroup = new THREE.Group();
-    globeGroup.position.set(3.7, -0.25, -1.6);
+    globeGroup.position.set(1, 0.2, -1);
     scene.add(globeGroup);
 
-    const pointCount = 1500;
-    const radius = 1.35;
+    const pointCount = 2400;
+    const radius = 2.3;
     const globePositions = new Float32Array(pointCount * 3);
     const globeColors = new Float32Array(pointCount * 3);
 
@@ -85,6 +85,8 @@ export default function SpaceScene() {
     });
     const globe = new THREE.Points(globeGeo, globeMat);
     globeGroup.add(globe);
+    // the below line is for tweaking the position of globe via console, REMOVE THIS LATER
+    (window as unknown as { __globe?: THREE.Group }).__globe = globeGroup;
 
     // faint outer halo for depth
     const haloGeo = new THREE.SphereGeometry(radius * 1.08, 32, 32);
