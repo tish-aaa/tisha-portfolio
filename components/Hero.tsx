@@ -1,14 +1,15 @@
 export default function Hero() {
   return (
     <section className="relative z-10 flex min-h-screen flex-col justify-center px-[6vw]">
-      <div className="mb-[18px] w-fit rounded-full border border-[#8E9096] px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] text-[#D8D9DE]">
+      <div className="mb-[18px] flex w-fit items-center gap-2 rounded-full border border-[#8E9096] px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] text-[#D8D9DE]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#1FDCD2] shadow-[0_0_8px_rgba(31,220,210,0.8)]" />
         Full stack developer · front-end
       </div>
 
-      <h1 className="max-w-[900px] font-garamond text-[clamp(44px,7vw,96px)] font-semibold leading-[1.05] text-[#F5F5F7]">
+      <h1 className="max-w-[900px] animate-shine bg-[linear-gradient(110deg,#D8D9DE_35%,#FFFFFF_45%,#D8D9DE_55%)] bg-[length:250%_100%] bg-clip-text font-garamond text-[clamp(44px,7vw,96px)] font-semibold leading-[1.05] text-transparent">
         Hi, I&apos;m Tisha —<br />
         I build{' '}
-        <span className="text-white drop-shadow-[0_0_28px_rgba(245,245,247,0.55)]">
+        <span className="bg-none text-[#1FDCD2] drop-shadow-[0_0_28px_rgba(31,220,210,0.5)]">
           things
         </span>
         <br />
@@ -30,7 +31,7 @@ export default function Hero() {
         <div className="contact-box flex flex-row gap-4">
           <a
             href="mailto:hello@tishasharma.in"
-            className="rounded-full border border-[#8E9096] px-7 py-3.5 font-garamond text-[15px] font-medium text-[#F5F5F7] transition-colors hover:border-[#7C93B8] hover:text-[#7C93B8]"
+            className="rounded-full border border-[#8E9096] px-7 py-3.5 font-garamond text-[15px] font-medium text-[#F5F5F7] transition-colors hover:border-[#1FDCD2] hover:text-[#1FDCD2]"
           >
             Get in touch
           </a>

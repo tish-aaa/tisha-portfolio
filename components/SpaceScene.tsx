@@ -23,67 +23,78 @@ export default function SpaceScene() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // starfield
+    // background starfield
     const starGeo = new THREE.BufferGeometry();
-    const starCount = 2400;
-    const positions = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount * 3; i++) positions[i] = (Math.random() - 0.5) * 60;
-    starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starCount = 2200;
+    const starPositions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount * 3; i++) starPositions[i] = (Math.random() - 0.5) * 60;
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
     const starMat = new THREE.PointsMaterial({
-      color: 0xecf8f8,
+      color: 0xf5f5f7,
       size: 0.045,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.65,
     });
     const stars = new THREE.Points(starGeo, starMat);
     scene.add(stars);
 
-    // earth
-    const earthGroup = new THREE.Group();
-    earthGroup.position.set(3.4, -0.3, -1.5);
-    scene.add(earthGroup);
+    // dotted "data globe" — points distributed evenly on a sphere via
+    // the golden-angle (Fibonacci sphere) method, silver with a scatter
+    // of accent-cyan "active node" points
+    const globeGroup = new THREE.Group();
+    globeGroup.position.set(3.7, -0.25, -1.6);
+    scene.add(globeGroup);
 
-    const earthGeo = new THREE.SphereGeometry(1.0, 64, 64);
-    const canvas2d = document.createElement('canvas');
-    canvas2d.width = 512;
-    canvas2d.height = 256;
-    const ctx = canvas2d.getContext('2d')!;
-    const grad = ctx.createLinearGradient(0, 0, 0, 256);
-    grad.addColorStop(0, '#3A3D45');
-    grad.addColorStop(0.5, '#23252B');
-    grad.addColorStop(1, '#2E3038');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 512, 256);
-    ctx.fillStyle = 'rgba(216,217,222,0.5)';
-    for (let i = 0; i < 18; i++) {
-      const x = Math.random() * 512;
-      const y = Math.random() * 256;
-      ctx.beginPath();
-      ctx.ellipse(x, y, 20 + Math.random() * 40, 12 + Math.random() * 20, 0, 0, Math.PI * 2);
-      ctx.fill();
+    const pointCount = 1500;
+    const radius = 1.35;
+    const globePositions = new Float32Array(pointCount * 3);
+    const globeColors = new Float32Array(pointCount * 3);
+
+    const silver = new THREE.Color('#D8D9DE');
+    const silverBright = new THREE.Color('#F5F5F7');
+    const accent = new THREE.Color('#1FDCD2');
+
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < pointCount; i++) {
+      const y = 1 - (i / (pointCount - 1)) * 2;
+      const r = Math.sqrt(1 - y * y);
+      const theta = goldenAngle * i;
+      const x = Math.cos(theta) * r;
+      const z = Math.sin(theta) * r;
+
+      globePositions[i * 3] = x * radius;
+      globePositions[i * 3 + 1] = y * radius;
+      globePositions[i * 3 + 2] = z * radius;
+
+      const isNode = Math.random() < 0.035;
+      const c = isNode ? accent : Math.random() < 0.5 ? silver : silverBright;
+      globeColors[i * 3] = c.r;
+      globeColors[i * 3 + 1] = c.g;
+      globeColors[i * 3 + 2] = c.b;
     }
-    const earthTexture = new THREE.CanvasTexture(canvas2d);
-    const earthMat = new THREE.MeshStandardMaterial({
-      map: earthTexture,
-      roughness: 0.7,
-      metalness: 0.1,
-    });
-    const earth = new THREE.Mesh(earthGeo, earthMat);
-    earthGroup.add(earth);
 
-    const glowGeo = new THREE.SphereGeometry(1.06, 64, 64);
-    const glowMat = new THREE.MeshBasicMaterial({
-      color: 0x7c93b8,
+    const globeGeo = new THREE.BufferGeometry();
+    globeGeo.setAttribute('position', new THREE.BufferAttribute(globePositions, 3));
+    globeGeo.setAttribute('color', new THREE.BufferAttribute(globeColors, 3));
+    const globeMat = new THREE.PointsMaterial({
+      size: 0.028,
+      vertexColors: true,
       transparent: true,
-      opacity: 0.1,
+      opacity: 0.9,
+      sizeAttenuation: true,
+    });
+    const globe = new THREE.Points(globeGeo, globeMat);
+    globeGroup.add(globe);
+
+    // faint outer halo for depth
+    const haloGeo = new THREE.SphereGeometry(radius * 1.08, 32, 32);
+    const haloMat = new THREE.MeshBasicMaterial({
+      color: 0x1fdcd2,
+      transparent: true,
+      opacity: 0.035,
       side: THREE.BackSide,
     });
-    earthGroup.add(new THREE.Mesh(glowGeo, glowMat));
-
-    scene.add(new THREE.AmbientLight(0xd8d9de, 0.6));
-    const sun = new THREE.DirectionalLight(0xf5f5f7, 1.1);
-    sun.position.set(-3, 2, 4);
-    scene.add(sun);
+    globeGroup.add(new THREE.Mesh(haloGeo, haloMat));
 
     let targetRotation = 0;
     let currentRotation = 0;
@@ -96,8 +107,8 @@ export default function SpaceScene() {
     const animate = () => {
       frameId = requestAnimationFrame(animate);
       currentRotation += (targetRotation - currentRotation) * 0.06;
-      earth.rotation.y = currentRotation;
-      earth.rotation.y += 0.0007;
+      globeGroup.rotation.y = currentRotation;
+      globeGroup.rotation.y += 0.0009;
       stars.rotation.y += 0.00015;
       renderer.render(scene, camera);
     };
@@ -116,11 +127,10 @@ export default function SpaceScene() {
       window.removeEventListener('resize', onResize);
       starGeo.dispose();
       starMat.dispose();
-      earthGeo.dispose();
-      earthMat.dispose();
-      glowGeo.dispose();
-      glowMat.dispose();
-      earthTexture.dispose();
+      globeGeo.dispose();
+      globeMat.dispose();
+      haloGeo.dispose();
+      haloMat.dispose();
       renderer.dispose();
     };
   }, []);

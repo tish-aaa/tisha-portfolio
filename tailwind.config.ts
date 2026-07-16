@@ -28,9 +28,14 @@ const config: Config = {
           '50%': { backgroundPosition: '100% 100%' },
           '100%': { backgroundPosition: '0% 100%' },
         },
+        shine: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
       },
       animation: {
         meshFlow: 'meshFlow 12s ease-in-out infinite alternate',
+        shine: 'shine 5s linear infinite',
       },
     },
   },
