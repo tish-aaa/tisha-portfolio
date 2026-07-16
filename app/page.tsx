@@ -4,12 +4,16 @@ import dynamic from 'next/dynamic';
 import Hero from '@/components/Hero';
 
 const SpaceScene = dynamic(() => import('@/components/SpaceScene'), { ssr: false });
+const CursorSparkles = dynamic(() => import('@/components/CursorSparkles'), { ssr: false });
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-midnight">
+    <main className="relative min-h-screen">
       <SpaceScene />
-      <Hero />
+      <CursorSparkles />
+      <div className="relative z-10">
+        <Hero />
+      </div>
     </main>
   );
 }

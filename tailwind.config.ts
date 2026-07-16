@@ -9,20 +9,14 @@ const config: Config = {
     extend: {
       colors: {
         cream: '#ECF8F8',
-        midnight: '#0A1F1D',
-        cyan: {
-          light: '#22E1DF',
-          DEFAULT: '#1FDCD2',
-          deep: '#1DCFCA',
+        obsidian: '#0B0C0F',
+        silver: {
+          light: '#F5F5F7',
+          DEFAULT: '#D8D9DE',
+          dim: '#8E9096',
         },
-        teal: {
-          light: '#70C2BD',
-          DEFAULT: '#45B2AB',
-          dark: '#298A90',
-          darker: '#19A99F',
-          darkest: '#1D8A7A',
-        },
-        muted: '#94BCAC',
+        ice: '#7C93B8',
+        muted: '#6B6D74',
       },
       fontFamily: {
         garamond: ['var(--font-garamond)', 'serif'],

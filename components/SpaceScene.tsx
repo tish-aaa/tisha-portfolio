@@ -17,7 +17,7 @@ export default function SpaceScene() {
       0.1,
       1000
     );
-    camera.position.set(2.2, 0.3, 3.2);
+    camera.position.set(3.0, 0.2, 4.4);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -40,21 +40,21 @@ export default function SpaceScene() {
 
     // earth
     const earthGroup = new THREE.Group();
-    earthGroup.position.set(1.3, -0.6, 0);
+    earthGroup.position.set(3.4, -0.3, -1.5);
     scene.add(earthGroup);
 
-    const earthGeo = new THREE.SphereGeometry(1.15, 64, 64);
+    const earthGeo = new THREE.SphereGeometry(1.0, 64, 64);
     const canvas2d = document.createElement('canvas');
     canvas2d.width = 512;
     canvas2d.height = 256;
     const ctx = canvas2d.getContext('2d')!;
     const grad = ctx.createLinearGradient(0, 0, 0, 256);
-    grad.addColorStop(0, '#298A90');
-    grad.addColorStop(0.5, '#1D8A7A');
-    grad.addColorStop(1, '#19A99F');
+    grad.addColorStop(0, '#3A3D45');
+    grad.addColorStop(0.5, '#23252B');
+    grad.addColorStop(1, '#2E3038');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 512, 256);
-    ctx.fillStyle = 'rgba(236,248,248,0.55)';
+    ctx.fillStyle = 'rgba(216,217,222,0.5)';
     for (let i = 0; i < 18; i++) {
       const x = Math.random() * 512;
       const y = Math.random() * 256;
@@ -71,17 +71,17 @@ export default function SpaceScene() {
     const earth = new THREE.Mesh(earthGeo, earthMat);
     earthGroup.add(earth);
 
-    const glowGeo = new THREE.SphereGeometry(1.22, 64, 64);
+    const glowGeo = new THREE.SphereGeometry(1.06, 64, 64);
     const glowMat = new THREE.MeshBasicMaterial({
-      color: 0x22e1df,
+      color: 0x7c93b8,
       transparent: true,
-      opacity: 0.12,
+      opacity: 0.1,
       side: THREE.BackSide,
     });
     earthGroup.add(new THREE.Mesh(glowGeo, glowMat));
 
-    scene.add(new THREE.AmbientLight(0x70c2bd, 0.6));
-    const sun = new THREE.DirectionalLight(0xecf8f8, 1.1);
+    scene.add(new THREE.AmbientLight(0xd8d9de, 0.6));
+    const sun = new THREE.DirectionalLight(0xf5f5f7, 1.1);
     sun.position.set(-3, 2, 4);
     scene.add(sun);
 
@@ -128,7 +128,7 @@ export default function SpaceScene() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full block z-0"
+      className="fixed inset-0 z-0 block h-full w-full"
     />
   );
 }

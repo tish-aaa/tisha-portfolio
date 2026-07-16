@@ -7,12 +7,12 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
-  background-color: #0A1F1D;
+  background-color: #0B0C0F;
 }
 
 ::selection {
-  background: #1FDCD2;
-  color: #0A1F1D;
+  background: #F5F5F7;
+  color: #0B0C0F;
 }
 
 .contact-box a {
