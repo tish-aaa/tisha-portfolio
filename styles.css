@@ -50,13 +50,26 @@ h1 {
     font-weight: 600;
     color: var(--text-dark); 
     line-height: 1.2;
-    letter-spacing: -0.5px; /* Pulls the letters slightly closer */
+    letter-spacing: -0.5px;
     margin: 20px 0;
     opacity: 0.9;
 }
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin: -10px 0 12px 0;
+}
 
-p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
-
+p { 
+    font-size: 1.05rem; 
+    color: #298A90; 
+    margin-top: 0;
+    margin-bottom: 30px;
+    max-width: 600px;
+    line-height: 1.5;
+}
 .badge { 
     border: 1px solid #1D8A7A; padding: 5px 15px; 
     font-size: 0.7rem; color: #1D8A7A; 
@@ -73,8 +86,8 @@ p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
 .contact-box a { 
     color: var(--text-dark); 
     text-decoration: none; 
-    font-size: 1.05rem;
-    font-weight: 400; 
+    font-size: 1.3rem;
+    font-weight: 500;
     opacity: 0.6; 
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     -webkit-font-smoothing: antialiased;
@@ -97,9 +110,9 @@ p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
 .social-icons {
     display: flex;
     flex-direction: row;
-    gap: 32px;
-    margin-top: 5px;
+    gap: 40px;
+    margin-top: 15px;
 }
 .social-icons a i {
-    font-size: 1.6rem; 
+    font-size: 2.2rem;
 }
