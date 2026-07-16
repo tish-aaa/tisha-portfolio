@@ -93,3 +93,13 @@ p { font-size: 1.1rem; color: #298A90; margin-bottom: 40px; }
     transform: scale(1.04) translateZ(0);
     letter-spacing: 1.5px; 
 }
+/* SOCIAL ICONS FLEX CONTAINER */
+.social-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 5px;
+}
+.social-icons a i {
+    font-size: 1.6rem; 
+}
