@@ -42,7 +42,7 @@ export default function SpaceScene() {
     // the golden-angle (Fibonacci sphere) method, silver with a scatter
     // of accent-cyan "active node" points
     const globeGroup = new THREE.Group();
-    globeGroup.position.set(1, 0.2, -1);
+    globeGroup.position.set(0.6, 0.4, -1);
     scene.add(globeGroup);
 
     const pointCount = 2400;
