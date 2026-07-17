@@ -17,9 +17,6 @@ export default function CursorSparkles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // Explicitly bail on touch/coarse-pointer devices — a hover trail
-    // makes no sense without a persistent cursor, and silently trying
-    // anyway is what breaks this effect on phones elsewhere.
     const isFinePointer = window.matchMedia('(pointer: fine)').matches;
     if (!isFinePointer) return;
 
@@ -36,7 +33,7 @@ export default function CursorSparkles() {
 
     const onMove = (e: MouseEvent) => {
       const now = performance.now();
-      if (now - lastSpawn < 30) return; // throttle spawn rate
+      if (now - lastSpawn < 30) return;
       lastSpawn = now;
       sparkles.push({
         x: e.clientX,
@@ -50,6 +47,25 @@ export default function CursorSparkles() {
       });
     };
     window.addEventListener('mousemove', onMove);
+
+    const onClick = (e: MouseEvent) => {
+      const burstCount = 18;
+      for (let i = 0; i < burstCount; i++) {
+        const angle = (Math.PI * 2 * i) / burstCount + Math.random() * 0.3;
+        const speed = 1.5 + Math.random() * 2.5;
+        sparkles.push({
+          x: e.clientX,
+          y: e.clientY,
+          size: 2 + Math.random() * 3,
+          life: 0,
+          maxLife: 30 + Math.random() * 20,
+          driftX: Math.cos(angle) * speed,
+          driftY: Math.sin(angle) * speed,
+          color: Math.random() < 0.4 ? '#1FDCD2' : '#F5F5F7',
+        });
+      }
+    };
+    window.addEventListener('click', onClick);
 
     const onResize = () => {
       canvas.width = window.innerWidth;
@@ -67,6 +83,8 @@ export default function CursorSparkles() {
         s.life += 1;
         s.x += s.driftX;
         s.y += s.driftY;
+        s.driftX *= 0.96;
+        s.driftY *= 0.96;
         const progress = s.life / s.maxLife;
         const opacity = progress < 0.2 ? progress / 0.2 : 1 - (progress - 0.2) / 0.8;
 
@@ -85,6 +103,7 @@ export default function CursorSparkles() {
     return () => {
       cancelAnimationFrame(frameId);
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('click', onClick);
       window.removeEventListener('resize', onResize);
     };
   }, []);
