@@ -17,70 +17,41 @@ const milestones: Milestone[] = [
   { date: 'Apr 2024 — present', title: 'Full Stack Developer specialized in Front-end', org: 'Variety Tech', desc: 'Building web tools and interfaces for Ireland-based clients — car configurators, lead-gen forms, and more.' },
   { date: '2025', title: 'BSc IT Graduate', org: 'V.G. Vaze Kelkar', desc: '9.1 CGPA. Convocation done, degree in hand.' },
   { date: '2026', title: 'BOD, Club Service', org: 'Rotaract Club of Thane North End', desc: 'Leading service projects, coordinating volunteers, planning and budgeting initiatives.' },
-  { date: 'Now', title: 'Pivoting toward Data', org: 'In progress', desc: 'SQL practice, exploring Data Science — building the India Data Center Transparency Tracker on the side.' },
+  { date: 'Now', title: 'Building', org: 'India Data Center Transparency Tracker', desc: 'A crowdsourced platform tracking data center construction against drought and groundwater-stress risk.' },
 ];
 
 export default function Timeline() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ['start center', 'end center'],
   });
 
-  const trackX = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['0%', `-${(milestones.length - 1) * 100}%`]
-  );
-
-  const legAngle = useTransform(scrollYProgress, (v) => (v * 40) % 40);
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section id="journey" ref={containerRef} style={{ height: `${milestones.length * 100}vh` }} className="relative z-10">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="absolute left-[6vw] top-16 z-10">
-          <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-[#8E9096]">
-            Journey
-          </div>
-          <h2 className="max-w-[500px] font-garamond text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.15] text-[#F5F5F7]">
-            Scroll to keep moving.
-          </h2>
+    <section id="journey" className="relative z-10 px-[6vw] py-32">
+      <div className="mb-20">
+        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-[#8E9096]">
+          Journey
         </div>
+        <h2 className="max-w-[500px] font-garamond text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.15] text-[#F5F5F7]">
+          How I got here.
+        </h2>
+      </div>
 
-        {/* ground line */}
-        <div className="absolute bottom-[22%] left-0 h-px w-full bg-[#8E9096]/25" />
+      <div ref={containerRef} className="relative mx-auto max-w-[900px]">
+        {/* base track */}
+        <div className="absolute left-[7px] top-0 h-full w-px bg-[#8E9096]/20 md:left-1/2 md:-translate-x-1/2" />
+        {/* glowing fill that grows as you scroll through the section */}
+        <motion.div
+          className="absolute left-[7px] top-0 w-px bg-[#1FDCD2] shadow-[0_0_8px_rgba(31,220,210,0.6)] md:left-1/2 md:-translate-x-1/2"
+          style={{ height: lineHeight }}
+        />
 
-        {/* runner — simple animated figure, fixed in place while the
-            track scrolls past underneath it */}
-        <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2">
-          <Runner legAngle={legAngle} />
-        </div>
-
-        {/* horizontal track of milestone cards */}
-        <motion.div className="flex h-full" style={{ x: trackX }}>
-          {milestones.map((m) => (
-            <div
-              key={m.title}
-              className="flex h-full w-screen flex-shrink-0 items-end justify-center pb-[28%]"
-            >
-              <div className="max-w-[420px] px-6 text-center">
-                <div className="mb-2 text-[13px] uppercase tracking-[0.12em] text-[#1FDCD2]">
-                  {m.date}
-                </div>
-                <div className="font-garamond text-[26px] font-semibold text-[#F5F5F7]">
-                  {m.title}
-                </div>
-                <div className="mt-1 text-[14px] text-[#8E9096]">{m.org}</div>
-                <p className="mt-3 text-[14px] leading-relaxed text-[#B8BABE]">{m.desc}</p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* progress dots */}
-        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-2">
-          {milestones.map((_, i) => (
-            <Dot key={i} index={i} total={milestones.length} progress={scrollYProgress} />
+        <div className="flex flex-col gap-16">
+          {milestones.map((m, i) => (
+            <TimelineRow key={m.title} milestone={m} index={i} progress={scrollYProgress} total={milestones.length} />
           ))}
         </div>
       </div>
@@ -88,41 +59,47 @@ export default function Timeline() {
   );
 }
 
-function Runner({ legAngle }: { legAngle: MotionValue<number> }) {
-  return (
-    <svg width="40" height="60" viewBox="0 0 40 60">
-      <circle cx="20" cy="10" r="7" className="fill-[#1FDCD2]" />
-      <line x1="20" y1="17" x2="20" y2="38" stroke="#F5F5F7" strokeWidth="3" strokeLinecap="round" />
-      <motion.line
-        x1="20" y1="38" x2="10" y2="58"
-        stroke="#F5F5F7" strokeWidth="3" strokeLinecap="round"
-        style={{ rotate: legAngle, transformOrigin: '20px 38px' }}
-      />
-      <motion.line
-        x1="20" y1="38" x2="30" y2="58"
-        stroke="#F5F5F7" strokeWidth="3" strokeLinecap="round"
-        style={{ rotate: useTransform(legAngle, (v: number) => -v), transformOrigin: '20px 38px' }}
-      />
-      <line x1="20" y1="22" x2="10" y2="30" stroke="#F5F5F7" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="20" y1="22" x2="30" y2="30" stroke="#F5F5F7" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function Dot({
+function TimelineRow({
+  milestone,
   index,
-  total,
   progress,
+  total,
 }: {
+  milestone: Milestone;
   index: number;
-  total: number;
   progress: MotionValue<number>;
+  total: number;
 }) {
-  const step = 1 / total;
-  const opacity = useTransform(
+  const isRight = index % 2 === 1;
+  const activeAt = index / (total - 1);
+  const nodeColor = useTransform(progress, [Math.max(0, activeAt - 0.03), activeAt], ['#8E9096', '#1FDCD2']);
+  const nodeGlow = useTransform(
     progress,
-    [Math.max(0, index * step - step / 2), index * step, Math.min(1, index * step + step / 2)],
-    [0.3, 1, 0.3]
+    [Math.max(0, activeAt - 0.03), activeAt],
+    ['0 0 0px rgba(31,220,210,0)', '0 0 10px rgba(31,220,210,0.8)']
   );
-  return <motion.div className="h-1.5 w-1.5 rounded-full bg-[#1FDCD2]" style={{ opacity }} />;
+
+  return (
+    <div className="relative grid gap-6 md:grid-cols-2">
+      <motion.div
+        className="absolute left-0 top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full md:left-1/2"
+        style={{ backgroundColor: nodeColor, boxShadow: nodeGlow }}
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className={`pl-8 md:pl-0 ${isRight ? 'md:col-start-2 md:pl-16' : 'md:col-start-1 md:pr-16 md:text-right'}`}
+      >
+        <div className="text-[13px] uppercase tracking-[0.12em] text-[#1FDCD2]">{milestone.date}</div>
+        <div className="mt-2 font-garamond text-[24px] font-semibold text-[#F5F5F7]">{milestone.title}</div>
+        <div className="mt-1 text-[14px] text-[#8E9096]">{milestone.org}</div>
+        <p className={`mt-3 max-w-[380px] text-[14px] leading-relaxed text-[#B8BABE] ${isRight ? '' : 'md:ml-auto'}`}>
+          {milestone.desc}
+        </p>
+      </motion.div>
+    </div>
+  );
 }
