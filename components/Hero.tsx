@@ -37,11 +37,6 @@ export default function Hero() {
           </a>
         </div>
       </div>
-
-      <div className="absolute bottom-10 left-[6vw] flex items-center gap-2.5 text-[11px] uppercase tracking-[0.1em] text-[#8E9096]">
-        Scroll the globe
-        <span className="inline-block h-px w-6 animate-pulse bg-[#8E9096]" />
-      </div>
     </section>
   );
 }
