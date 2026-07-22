@@ -58,7 +58,7 @@ export default function Projects() {
 
             {/* speech-bubble description — appears on hover, pure CSS,
                 anchored to this row rather than following the cursor */}
-            <div className="pointer-events-none absolute right-0 -top-[90%] z-20 w-[280px] origin-top-right translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:right-12">
+            <div className="pointer-events-none absolute bottom-full right-24 z-20 mb-1 w-[280px] origin-bottom-right translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:right-0">
               <div className="relative rounded-2xl border border-[#1FDCD2]/40 bg-[#12141a] p-4 shadow-[0_0_24px_rgba(31,220,210,0.15)]">
                 <p className="text-[13px] leading-relaxed text-[#B8BABE]">{project.desc}</p>
                 {/* tail */}
