@@ -40,3 +40,7 @@ html, body {
   0%, 100% { opacity: 0.7; r: 4.5; }
   50% { opacity: 1; r: 6; }
 }
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

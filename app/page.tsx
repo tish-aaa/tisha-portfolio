@@ -7,6 +7,7 @@ import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 const SpaceScene = dynamic(() => import('@/components/SpaceScene'), { ssr: false });
 const CursorSparkles = dynamic(() => import('@/components/CursorSparkles'), { ssr: false });
@@ -23,6 +24,7 @@ export default function Home() {
         <Timeline />
         <Projects />
         <Contact />
+        <Footer />
       </div>
     </main>
   );

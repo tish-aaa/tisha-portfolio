@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative z-10 flex min-h-screen flex-col justify-center px-[6vw]">
+    <section id="top" className="relative z-10 flex min-h-screen flex-col justify-center px-[6vw]">
       <div className="mb-[18px] flex w-fit items-center gap-2 rounded-full border border-[#8E9096] px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] text-[#D8D9DE]">
         <span className="h-1.5 w-1.5 rounded-full bg-[#1FDCD2] shadow-[0_0_8px_rgba(31,220,210,0.8)]" />
         Full stack developer · front-end
