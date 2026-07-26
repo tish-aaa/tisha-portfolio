@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="relative min-h-screen">
       <SpaceScene />
       <CursorSparkles />
+      <Nav />
       <div className="relative z-10">
         <Hero />
         <About />
