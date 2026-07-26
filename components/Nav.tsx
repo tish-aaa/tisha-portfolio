@@ -10,14 +10,22 @@ const links = [
   { label: 'Contact', href: '#contact' },
 ];
 
+const fadeMask = {
+  WebkitMaskImage: 'linear-gradient(to right, black 60%, transparent 92%)',
+  maskImage: 'linear-gradient(to right, black 60%, transparent 92%)',
+};
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-[#8E9096]/10 backdrop-blur-sm">
-      <div className="flex items-center justify-between px-[6vw] py-4">
+    <nav
+      className="fixed top-0 z-50 w-full bg-transparent backdrop-blur-[5px] md:w-[62%]"
+      style={fadeMask}
+    >
+      <div className="flex items-center justify-between px-[6vw] py-4 md:px-[4vw]">
         <a href="#top" className="flex items-center gap-2.5">
-          <svg width="18" height="18" viewBox="0 0 28 28">
+          <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
             <path
               d="M14 2 L16.2 11.8 L26 14 L16.2 16.2 L14 26 L11.8 16.2 L2 14 L11.8 11.8 Z"
               className="fill-[#1FDCD2]"
@@ -28,7 +36,7 @@ export default function Nav() {
         </a>
 
         {/* desktop links */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
@@ -59,7 +67,10 @@ export default function Nav() {
 
       {/* mobile menu */}
       {open && (
-        <div className="flex flex-col gap-1 border-t border-[#8E9096]/10 px-[6vw] py-4 md:hidden">
+        <div
+          className="flex flex-col gap-1 border-t border-[#8E9096]/10 bg-[#0B0C0F]/90 px-[6vw] py-4 backdrop-blur-md md:hidden"
+          style={{ WebkitMaskImage: 'none', maskImage: 'none' }}
+        >
           {links.map((l) => (
             <a
               key={l.href}
