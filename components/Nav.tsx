@@ -11,8 +11,8 @@ const links = [
 ];
 
 const fadeMask = {
-  WebkitMaskImage: 'linear-gradient(to right, black 60%, transparent 92%)',
-  maskImage: 'linear-gradient(to right, black 60%, transparent 92%)',
+  WebkitMaskImage: 'linear-gradient(to left, black 60%, transparent 99.9%)',
+  maskImage: 'linear-gradient(to left, black 60%, transparent 99.9%)',
 };
 
 export default function Nav() {
@@ -20,10 +20,10 @@ export default function Nav() {
 
   return (
     <nav
-      className="fixed top-0 z-50 w-full bg-transparent backdrop-blur-[5px] md:w-[62%]"
+      className="fixed top-0 right-0 z-50 w-full bg-transparent backdrop-blur-[5px] md:w-[62%]"
       style={fadeMask}
     >
-      <div className="flex items-center justify-between px-[6vw] py-4 md:px-[4vw]">
+      <div className="flex flex-wrap gap-y-0 items-center justify-between px-[6vw] py-4 md:px-[4vw]">
         <a href="#top" className="flex items-center gap-2.5">
           <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
             <path
