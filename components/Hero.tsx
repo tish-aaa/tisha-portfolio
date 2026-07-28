@@ -30,7 +30,7 @@ export default function Hero() {
         </a>
         <div className="contact-box flex flex-row gap-4">
           <a
-            href="mailto:hello@tishasharma.in"
+            href="#contact"
             className="rounded-full border border-[#8E9096] px-7 py-3.5 font-garamond text-[15px] font-medium text-[#F5F5F7] transition-colors hover:border-[#1FDCD2] hover:text-[#1FDCD2]"
           >
             Get in touch
