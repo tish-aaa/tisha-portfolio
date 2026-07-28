@@ -36,6 +36,16 @@ const mobileGroups: SkillGroup[] = [
   { label: 'Tools', icon: '▲', center: [200, 1300], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
 ];
 
+// Tablet (768–1199px): a 2×2 grid instead of either the wide zig-zag
+// (too cramped at this width) or the tall vertical stack (wastes the
+// extra horizontal room an iPad actually has).
+const tabletGroups: SkillGroup[] = [
+  { label: 'Core', icon: '✦', center: [220, 220], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
+  { label: 'Frameworks', icon: '◆', center: [620, 220], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
+  { label: 'Back-end & Data', icon: '●', center: [220, 680], skills: ['PHP', 'SQL', 'Python', 'Networking'] },
+  { label: 'Tools', icon: '▲', center: [620, 680], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
+];
+
 // Text halo — a dark stroke drawn behind each label so it stays readable
 // against the busy starfield behind it, regardless of what's back there.
 const textHalo: CSSProperties = {
@@ -51,12 +61,16 @@ function ConstellationSVG({
   visible,
   className,
   glowId,
+  labelSize = 13,
+  skillSize = 18,
 }: {
   groups: SkillGroup[];
   viewBox: string;
   visible: boolean;
   className: string;
   glowId: string;
+  labelSize?: number;
+  skillSize?: number;
 }) {
   let nodeIndex = 0;
 
@@ -86,8 +100,8 @@ function ConstellationSVG({
             x={group.center[0]}
             y={group.center[1] - 118}
             textAnchor="middle"
-            className="fill-[#1FDCD2] text-[13px] uppercase tracking-[0.1em]"
-            style={{ ...textHalo, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}
+            className="fill-[#1FDCD2] uppercase tracking-[0.1em]"
+            style={{ ...textHalo, fontSize: labelSize, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}
           >
             {group.icon} {group.label}
           </text>
@@ -133,8 +147,8 @@ function ConstellationSVG({
                   x={x}
                   y={y - 16}
                   textAnchor="middle"
-                  className="fill-[#B8BABE] font-garamond text-[18px] transition-all duration-300 group-hover:fill-[#F5F5F7]"
-                  style={textHalo}
+                  className="fill-[#B8BABE] font-garamond transition-all duration-300 group-hover:fill-[#F5F5F7]"
+                  style={{ ...textHalo, fontSize: skillSize }}
                 >
                   {skill}
                 </text>
@@ -178,21 +192,33 @@ export default function Skills() {
         </h2>
       </div>
 
-      {/* Mobile: same constellation, stacked vertically */}
+      {/* Mobile (below 768px): vertical stack, larger text since
+          there's no crowding to worry about in a single column */}
       <ConstellationSVG
         groups={mobileGroups}
         viewBox="0 0 400 1450"
         visible={visible}
         className="w-full md:hidden"
         glowId="glow-mobile"
+        labelSize={15}
+        skillSize={21}
       />
 
-      {/* Desktop/tablet: zig-zag across a wide viewBox */}
+      {/* Tablet (768–1199px): 2×2 grid */}
+      <ConstellationSVG
+        groups={tabletGroups}
+        viewBox="0 0 840 900"
+        visible={visible}
+        className="hidden w-full md:block min-[1200px]:hidden"
+        glowId="glow-tablet"
+      />
+
+      {/* Desktop (1200px+): wide zig-zag */}
       <ConstellationSVG
         groups={desktopGroups}
         viewBox="0 0 1200 480"
         visible={visible}
-        className="hidden w-full md:block"
+        className="hidden w-full min-[1200px]:block"
         glowId="glow-desktop"
       />
     </section>
