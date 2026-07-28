@@ -65,25 +65,39 @@ export default function Nav() {
           opacity + transform transition can actually animate instead of
           just popping in and out */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-[#0B0C0F]/95 backdrop-blur-lg transition-all duration-300 min-[992px]:hidden ${
+        className={`fixed inset-0 z-40 flex flex-col justify-between bg-[#0B0C0F]/88 backdrop-blur-md transition-all duration-300 min-[992px]:hidden ${
           open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
       >
-        {links.map((l, i) => (
-          <a
-            key={l.href}
-            href={l.href}
-            onClick={() => setOpen(false)}
-            className="font-garamond text-[28px] text-[#F5F5F7] transition-all duration-300 hover:text-[#1FDCD2]"
-            style={{
-              transitionDelay: open ? `${i * 60}ms` : '0ms',
-              opacity: open ? 1 : 0,
-              transform: open ? 'translateY(0)' : 'translateY(12px)',
-            }}
-          >
-            {l.label}
+        <div className="mt-24 flex flex-col px-[6vw]">
+          {links.map((l, i) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="group flex items-baseline gap-4 border-b border-[#8E9096]/15 py-5 transition-all duration-300"
+              style={{
+                transitionDelay: open ? `${i * 60}ms` : '0ms',
+                opacity: open ? 1 : 0,
+                transform: open ? 'translateX(0)' : 'translateX(16px)',
+              }}
+            >
+              <span className="font-mono text-[12px] text-[#1FDCD2]">
+                0{i + 1}
+              </span>
+              <span className="font-garamond text-[26px] text-[#F5F5F7] transition-colors group-hover:text-[#1FDCD2]">
+                {l.label}
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between px-[6vw] pb-10 text-[12px] uppercase tracking-[0.1em] text-[#8E9096]">
+          <span>Thane, India</span>
+          <a href="#contact" onClick={() => setOpen(false)} className="text-[#1FDCD2]">
+            Say hi →
           </a>
-        ))}
+        </div>
       </div>
     </>
   );
