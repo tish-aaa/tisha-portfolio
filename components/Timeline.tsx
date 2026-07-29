@@ -82,7 +82,7 @@ function TimelineRow({
   return (
     <div className="relative grid gap-6 md:grid-cols-2">
       <motion.div
-        className="absolute left-0 top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full md:left-1/2"
+        className="absolute left-[7px] top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full md:left-1/2"
         style={{ backgroundColor: nodeColor, boxShadow: nodeGlow }}
       />
 
