@@ -17,9 +17,6 @@ export default function CursorSparkles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-    if (!isFinePointer) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -28,8 +25,28 @@ export default function CursorSparkles() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
     let sparkles: Sparkle[] = [];
     let lastSpawn = 0;
+
+    const spawnBurst = (x: number, y: number) => {
+      const burstCount = 18;
+      for (let i = 0; i < burstCount; i++) {
+        const angle = (Math.PI * 2 * i) / burstCount + Math.random() * 0.3;
+        const speed = 1.5 + Math.random() * 2.5;
+        sparkles.push({
+          x,
+          y,
+          size: 2 + Math.random() * 3,
+          life: 0,
+          maxLife: 30 + Math.random() * 20,
+          driftX: Math.cos(angle) * speed,
+          driftY: Math.sin(angle) * speed,
+          color: Math.random() < 0.4 ? '#1FDCD2' : '#F5F5F7',
+        });
+      }
+    };
 
     const onMove = (e: MouseEvent) => {
       const now = performance.now();
@@ -46,26 +63,16 @@ export default function CursorSparkles() {
         color: Math.random() < 0.3 ? '#1FDCD2' : '#F5F5F7',
       });
     };
-    window.addEventListener('mousemove', onMove);
 
-    const onClick = (e: MouseEvent) => {
-      const burstCount = 18;
-      for (let i = 0; i < burstCount; i++) {
-        const angle = (Math.PI * 2 * i) / burstCount + Math.random() * 0.3;
-        const speed = 1.5 + Math.random() * 2.5;
-        sparkles.push({
-          x: e.clientX,
-          y: e.clientY,
-          size: 2 + Math.random() * 3,
-          life: 0,
-          maxLife: 30 + Math.random() * 20,
-          driftX: Math.cos(angle) * speed,
-          driftY: Math.sin(angle) * speed,
-          color: Math.random() < 0.4 ? '#1FDCD2' : '#F5F5F7',
-        });
-      }
+    const onClick = (e: MouseEvent) => spawnBurst(e.clientX, e.clientY);
+    const onTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) spawnBurst(touch.clientX, touch.clientY);
     };
+
+    if (isFinePointer) window.addEventListener('mousemove', onMove);
     window.addEventListener('click', onClick);
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
 
     const onResize = () => {
       canvas.width = window.innerWidth;
@@ -102,8 +109,9 @@ export default function CursorSparkles() {
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener('mousemove', onMove);
+      if (isFinePointer) window.removeEventListener('mousemove', onMove);
       window.removeEventListener('click', onClick);
+      window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('resize', onResize);
     };
   }, []);

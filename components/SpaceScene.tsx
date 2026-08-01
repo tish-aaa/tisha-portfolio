@@ -23,26 +23,37 @@ export default function SpaceScene() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // background starfield
     const starGeo = new THREE.BufferGeometry();
     const starCount = 2200;
     const starPositions = new Float32Array(starCount * 3);
     for (let i = 0; i < starCount * 3; i++) starPositions[i] = (Math.random() - 0.5) * 60;
     starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+
+    const spriteCanvas = document.createElement('canvas');
+    spriteCanvas.width = 32;
+    spriteCanvas.height = 32;
+    const spriteCtx = spriteCanvas.getContext('2d')!;
+    const spriteGrad = spriteCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    spriteGrad.addColorStop(0, 'rgba(255,255,255,1)');
+    spriteGrad.addColorStop(0.5, 'rgba(255,255,255,0.4)');
+    spriteGrad.addColorStop(1, 'rgba(255,255,255,0)');
+    spriteCtx.fillStyle = spriteGrad;
+    spriteCtx.fillRect(0, 0, 32, 32);
+    const starSprite = new THREE.CanvasTexture(spriteCanvas);
+
     const starMat = new THREE.PointsMaterial({
       color: 0xf5f5f7,
       size: 0.045,
+      map: starSprite,
       transparent: true,
       opacity: 0.65,
+      depthWrite: false,
     });
     const stars = new THREE.Points(starGeo, starMat);
     scene.add(stars);
 
-    // dotted "data globe" — points distributed evenly on a sphere via
-    // the golden-angle (Fibonacci sphere) method, silver with a scatter
-    // of accent-cyan "active node" points
     const globeGroup = new THREE.Group();
-    globeGroup.position.set(0.6, 0.4, -1);
+    globeGroup.position.set(1, 0.2, -1);
     scene.add(globeGroup);
 
     const pointCount = 2400;
@@ -85,10 +96,7 @@ export default function SpaceScene() {
     });
     const globe = new THREE.Points(globeGeo, globeMat);
     globeGroup.add(globe);
-    // the below line is for tweaking the position of globe via console, REMOVE THIS LATER
-    (window as unknown as { __globe?: THREE.Group }).__globe = globeGroup;
 
-    // faint outer halo for depth
     const haloGeo = new THREE.SphereGeometry(radius * 1.08, 32, 32);
     const haloMat = new THREE.MeshBasicMaterial({
       color: 0x1fdcd2,
@@ -100,10 +108,13 @@ export default function SpaceScene() {
 
     let targetRotation = 0;
     let currentRotation = 0;
-    const onWheel = (e: WheelEvent) => {
-      targetRotation += e.deltaY * 0.002;
+    let lastScrollY = window.scrollY;
+    const onScroll = () => {
+      const delta = window.scrollY - lastScrollY;
+      targetRotation += delta * 0.002;
+      lastScrollY = window.scrollY;
     };
-    window.addEventListener('wheel', onWheel);
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     let frameId: number;
     const animate = () => {
@@ -116,7 +127,11 @@ export default function SpaceScene() {
     };
     animate();
 
+    let lastWidth = window.innerWidth;
     const onResize = () => {
+      const newWidth = window.innerWidth;
+      if (newWidth === lastWidth) return;
+      lastWidth = newWidth;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -125,10 +140,11 @@ export default function SpaceScene() {
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       starGeo.dispose();
       starMat.dispose();
+      starSprite.dispose();
       globeGeo.dispose();
       globeMat.dispose();
       haloGeo.dispose();
