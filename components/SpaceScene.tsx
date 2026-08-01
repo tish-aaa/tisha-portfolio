@@ -35,7 +35,7 @@ export default function SpaceScene() {
     const spriteCtx = spriteCanvas.getContext('2d')!;
     const spriteGrad = spriteCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
     spriteGrad.addColorStop(0, 'rgba(255,255,255,1)');
-    spriteGrad.addColorStop(0.5, 'rgba(255,255,255,0.4)');
+    spriteGrad.addColorStop(0.65, 'rgba(255,255,255,1)');
     spriteGrad.addColorStop(1, 'rgba(255,255,255,0)');
     spriteCtx.fillStyle = spriteGrad;
     spriteCtx.fillRect(0, 0, 32, 32);
@@ -46,7 +46,7 @@ export default function SpaceScene() {
       size: 0.045,
       map: starSprite,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.85,
       depthWrite: false,
     });
     const stars = new THREE.Points(starGeo, starMat);
