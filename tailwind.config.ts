@@ -17,6 +17,8 @@ const config: Config = {
         },
         ice: '#7C93B8',
         muted: '#6B6D74',
+        accent: '#1FDCD2',
+        amber: '#F5A623',
       },
       fontFamily: {
         garamond: ['var(--font-garamond)', 'serif'],

@@ -1,7 +1,7 @@
 export default function OutfitMavenPage() {
   return (
     <main className="min-h-screen bg-[#0B0C0F] px-[6vw] py-24 text-[#F5F5F7]">
-      <a href="/#projects" className="text-[13px] text-[#8E9096] transition-colors hover:text-[#1FDCD2]">
+      <a href="/#projects" className="text-[13px] text-[#8E9096] transition-colors hover:text-accent">
         ← Back home
       </a>
 
@@ -33,7 +33,7 @@ export default function OutfitMavenPage() {
 
       {/* Research */}
       <section className="mt-24 max-w-[720px]">
-        <h2 className="font-garamond text-[26px] font-semibold text-[#1FDCD2]">
+        <h2 className="font-garamond text-[26px] font-semibold text-accent">
           Started with research, not code
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-[#B8BABE]">
@@ -55,7 +55,7 @@ export default function OutfitMavenPage() {
 
       {/* Competitive analysis */}
       <section className="mt-20 max-w-[720px]">
-        <h2 className="font-garamond text-[26px] font-semibold text-[#1FDCD2]">
+        <h2 className="font-garamond text-[26px] font-semibold text-accent">
           Where existing apps fell short
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-[#B8BABE]">
@@ -69,7 +69,7 @@ export default function OutfitMavenPage() {
 
       {/* Features */}
       <section className="mt-20 max-w-[720px]">
-        <h2 className="font-garamond text-[26px] font-semibold text-[#1FDCD2]">
+        <h2 className="font-garamond text-[26px] font-semibold text-accent">
           What it does
         </h2>
         <ul className="mt-6 space-y-4">
@@ -80,7 +80,7 @@ export default function OutfitMavenPage() {
             'Complete post management — add, edit, delete, toggle private/public, mark items for sale with pricing',
           ].map((item) => (
             <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-[#B8BABE]">
-              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#1FDCD2]" />
+              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
               {item}
             </li>
           ))}
@@ -89,7 +89,7 @@ export default function OutfitMavenPage() {
 
       {/* Build */}
       <section className="mt-20 max-w-[720px] pb-24">
-        <h2 className="font-garamond text-[26px] font-semibold text-[#1FDCD2]">
+        <h2 className="font-garamond text-[26px] font-semibold text-accent">
           How it&apos;s built
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-[#B8BABE]">

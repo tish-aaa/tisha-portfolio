@@ -45,7 +45,7 @@ export default function Timeline() {
         <div className="absolute left-[7px] top-0 h-full w-px bg-[#8E9096]/20 md:left-1/2 md:-translate-x-1/2" />
         {/* glowing fill that grows as you scroll through the section */}
         <motion.div
-          className="absolute left-[7px] top-0 w-px bg-[#1FDCD2] shadow-[0_0_8px_rgba(31,220,210,0.6)] md:left-1/2 md:-translate-x-1/2"
+          className="absolute left-[7px] top-0 w-px bg-accent shadow-[0_0_8px_rgba(31,220,210,0.6)] md:left-1/2 md:-translate-x-1/2"
           style={{ height: lineHeight }}
         />
 
@@ -93,7 +93,7 @@ function TimelineRow({
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`pl-8 md:pl-0 ${isRight ? 'md:col-start-2 md:pl-16' : 'md:col-start-1 md:pr-16 md:text-right'}`}
       >
-        <div className="text-[13px] uppercase tracking-[0.12em] text-[#1FDCD2]">{milestone.date}</div>
+        <div className="text-[13px] uppercase tracking-[0.12em] text-accent">{milestone.date}</div>
         <div className="mt-2 font-garamond text-[24px] font-semibold text-[#F5F5F7]">{milestone.title}</div>
         <div className="mt-1 text-[14px] text-[#8E9096]">{milestone.org}</div>
         <p className={`mt-3 max-w-[380px] text-[14px] leading-relaxed text-[#B8BABE] ${isRight ? '' : 'md:ml-auto'}`}>

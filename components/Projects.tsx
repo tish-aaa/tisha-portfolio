@@ -40,7 +40,7 @@ export default function Projects() {
               className="flex items-center justify-between py-8 transition-colors hover:bg-[#8E9096]/5"
             >
               <div>
-                <div className="font-garamond text-[32px] font-semibold text-[#F5F5F7] transition-colors group-hover:text-[#1FDCD2] sm:text-[44px]">
+                <div className="font-garamond text-[32px] font-semibold text-[#F5F5F7] transition-colors group-hover:text-accent sm:text-[44px]">
                   {project.title}
                 </div>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -51,7 +51,7 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
-              <span className="hidden text-[#8E9096] transition-colors group-hover:text-[#1FDCD2] sm:block">
+              <span className="hidden text-[#8E9096] transition-colors group-hover:text-accent sm:block">
                 View →
               </span>
             </a>
@@ -59,10 +59,10 @@ export default function Projects() {
             {/* speech-bubble description — appears on hover, pure CSS,
                 anchored to this row rather than following the cursor */}
             <div className="pointer-events-none absolute bottom-full right-24 z-20 mb-1 w-[280px] origin-bottom-right translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:right-0">
-              <div className="relative rounded-2xl border border-[#1FDCD2]/40 bg-[#12141a] p-4 shadow-[0_0_24px_rgba(31,220,210,0.15)]">
+              <div className="relative rounded-2xl border border-accent/40 bg-[#12141a] p-4 shadow-[0_0_24px_rgba(31,220,210,0.15)]">
                 <p className="text-[13px] leading-relaxed text-[#B8BABE]">{project.desc}</p>
                 {/* tail */}
-                <div className="absolute -bottom-[7px] right-8 h-3.5 w-3.5 rotate-45 border-b border-r border-[#1FDCD2]/40 bg-[#12141a]" />
+                <div className="absolute -bottom-[7px] right-8 h-3.5 w-3.5 rotate-45 border-b border-r border-accent/40 bg-[#12141a]" />
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 export default function SiteScraperPage() {
   return (
     <main className="min-h-screen bg-[#0B0C0F] px-[6vw] py-24 text-[#F5F5F7]">
-      <a href="/" className="text-[13px] text-[#8E9096] hover:text-[#1FDCD2]">← Back home</a>
+      <a href="/" className="text-[13px] text-[#8E9096] hover:text-accent">← Back home</a>
       <h1 className="mt-8 font-garamond text-[clamp(32px,5vw,60px)] font-semibold">
         Image Scraper Pipeline
       </h1>

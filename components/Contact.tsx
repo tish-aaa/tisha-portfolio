@@ -62,7 +62,7 @@ export default function Contact() {
             Let&apos;s make
             <br />
             something{' '}
-            <span className="italic text-[#1FDCD2] drop-shadow-[0_0_24px_rgba(31,220,210,0.4)]">
+            <span className="italic text-accent drop-shadow-[0_0_24px_rgba(31,220,210,0.4)]">
               stellar.
             </span>
           </h2>
@@ -70,13 +70,13 @@ export default function Contact() {
           <div className="mt-10 flex items-center gap-4" style={fadeUp(200)}>
             <a
               href={`mailto:${EMAIL}`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#1FDCD2] px-7 py-3.5 font-garamond text-[16px] font-medium text-[#0B0C0F] transition-all hover:bg-[#22E1DF] hover:shadow-[0_0_30px_rgba(31,220,210,0.45)]"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-garamond text-[16px] font-medium text-[#0B0C0F] transition-all hover:bg-[#22E1DF] hover:shadow-[0_0_30px_rgba(31,220,210,0.45)]"
             >
               Say hello →
             </a>
             <button
               onClick={copyEmail}
-              className="text-[13px] text-[#8E9096] underline decoration-dotted underline-offset-4 transition-colors hover:text-[#1FDCD2]"
+              className="text-[13px] text-[#8E9096] underline decoration-dotted underline-offset-4 transition-colors hover:text-accent"
             >
               {copied ? 'Copied ✓' : 'or copy email'}
             </button>
@@ -123,7 +123,7 @@ function Icon({ name }: { name: 'mail' | 'github' | 'linkedin' }) {
   const common = { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none' as const };
   if (name === 'mail') {
     return (
-      <svg {...common} className="flex-shrink-0 stroke-[#8E9096] transition-colors max-[991px]:stroke-[#1FDCD2] group-hover:stroke-[#1FDCD2]">
+      <svg {...common} className="flex-shrink-0 stroke-[#8E9096] transition-colors max-[991px]:stroke-accent group-hover:stroke-accent">
         <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth="1.6" />
         <path d="M3 7l9 6 9-6" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
@@ -131,13 +131,13 @@ function Icon({ name }: { name: 'mail' | 'github' | 'linkedin' }) {
   }
   if (name === 'github') {
     return (
-      <svg {...common} viewBox="0 0 16 16" className="flex-shrink-0 fill-[#8E9096] transition-colors max-[991px]:fill-[#1FDCD2] group-hover:fill-[#1FDCD2]">
+      <svg {...common} viewBox="0 0 16 16" className="flex-shrink-0 fill-[#8E9096] transition-colors max-[991px]:fill-accent group-hover:fill-accent">
         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" />
       </svg>
     );
   }
   return (
-    <svg {...common} viewBox="0 0 24 24" className="flex-shrink-0 fill-[#8E9096] transition-colors max-[991px]:fill-[#1FDCD2] group-hover:fill-[#1FDCD2]">
+    <svg {...common} viewBox="0 0 24 24" className="flex-shrink-0 fill-[#8E9096] transition-colors max-[991px]:fill-accent group-hover:fill-accent">
       <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.11 20.45H3.56V9h3.55v11.45z" />
     </svg>
   );
@@ -156,7 +156,7 @@ function RotaryPhone() {
       <path
         d="M8 -107 L9.3 -100.3 L16 -99 L9.3 -97.7 L8 -91 L6.7 -97.7 L0 -99 L6.7 -100.3 Z"
         transform="translate(95, 0)"
-        className="fill-[#1FDCD2]"
+        className="fill-accent"
         style={{ filter: 'drop-shadow(0 0 4px rgba(31,220,210,0.7))' }}
       />
       <path

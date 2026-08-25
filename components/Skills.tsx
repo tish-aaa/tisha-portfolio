@@ -100,7 +100,7 @@ function ConstellationSVG({
             x={group.center[0]}
             y={group.center[1] - 118}
             textAnchor="middle"
-            className="fill-[#1FDCD2] uppercase tracking-[0.1em]"
+            className="fill-accent uppercase tracking-[0.1em]"
             style={{ ...textHalo, fontSize: labelSize, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}
           >
             {group.icon} {group.label}
@@ -133,14 +133,14 @@ function ConstellationSVG({
                   stroke="#8E9096"
                   strokeOpacity={0.3}
                   strokeWidth={1}
-                  className="transition-all duration-300 group-hover:stroke-[#1FDCD2] group-hover:stroke-opacity-80"
+                  className="transition-all duration-300 group-hover:stroke-accent group-hover:stroke-opacity-80"
                 />
                 <circle
                   cx={x}
                   cy={y}
                   r={4.5}
                   filter={`url(#${glowId})`}
-                  className="fill-[#D8D9DE] transition-all duration-300 group-hover:fill-[#1FDCD2]"
+                  className="fill-[#D8D9DE] transition-all duration-300 group-hover:fill-accent"
                   style={{ animation: `twinkle 3.2s ease-in-out ${twinkleDelay}s infinite` }}
                 />
                 <text

@@ -74,7 +74,7 @@ function FactCard({
 }) {
   return (
     <div className={`bg-[#0B0C0F] p-6 transition-colors hover:bg-[#0F1013] ${span ? 'sm:col-span-2' : ''}`}>
-      <div className="text-[11px] uppercase tracking-[0.12em] text-[#1FDCD2]">{label}</div>
+      <div className="text-[11px] uppercase tracking-[0.12em] text-accent">{label}</div>
       <div className="mt-2 font-garamond text-[19px] font-medium text-[#F5F5F7]">{value}</div>
       <div className="mt-1 text-[13px] text-[#8E9096]">{sub}</div>
     </div>

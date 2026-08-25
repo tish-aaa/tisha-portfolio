@@ -23,7 +23,7 @@ export default function Nav() {
             <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
               <path
                 d="M14 2 L16.2 11.8 L26 14 L16.2 16.2 L14 26 L11.8 16.2 L2 14 L11.8 11.8 Z"
-                className="fill-[#1FDCD2]"
+                className="fill-accent"
                 style={{ filter: 'drop-shadow(0 0 3px rgba(31,220,210,0.7))' }}
               />
             </svg>
@@ -36,14 +36,14 @@ export default function Nav() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-[13px] uppercase tracking-[0.08em] text-[#8E9096] transition-colors hover:text-[#1FDCD2]"
+                className="text-[13px] uppercase tracking-[0.08em] text-[#8E9096] transition-colors hover:text-accent"
               >
                 {l.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="rounded-full border border-[#8E9096]/40 px-5 py-2 text-[13px] text-[#F5F5F7] transition-colors hover:border-[#1FDCD2] hover:text-[#1FDCD2]"
+              className="rounded-full border border-[#8E9096]/40 px-5 py-2 text-[13px] text-[#F5F5F7] transition-colors hover:border-accent hover:text-accent"
             >
               Say hi
             </a>
@@ -82,10 +82,10 @@ export default function Nav() {
                 transform: open ? 'translateX(0)' : 'translateX(16px)',
               }}
             >
-              <span className="font-mono text-[12px] text-[#1FDCD2]">
+              <span className="font-mono text-[12px] text-accent">
                 0{i + 1}
               </span>
-              <span className="font-garamond text-[26px] text-[#F5F5F7] transition-colors group-hover:text-[#1FDCD2]">
+              <span className="font-garamond text-[26px] text-[#F5F5F7] transition-colors group-hover:text-accent">
                 {l.label}
               </span>
             </a>
@@ -94,7 +94,7 @@ export default function Nav() {
 
         <div className="flex items-center justify-between px-[6vw] pb-10 text-[12px] uppercase tracking-[0.1em] text-[#8E9096]">
           <span>Thane, India</span>
-          <a href="#contact" onClick={() => setOpen(false)} className="text-[#1FDCD2]">
+          <a href="#contact" onClick={() => setOpen(false)} className="text-accent">
             Say hi →
           </a>
         </div>
