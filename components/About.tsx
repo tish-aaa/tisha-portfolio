@@ -43,6 +43,7 @@ export default function About() {
             label="Currently exploring"
             value="India Data Center Transparency Tracker"
             sub="A crowdsourced platform tracking data center construction against drought/groundwater risk — research phase"
+            labelColor="amber"
           />
           {/* <FactCard
             label="Approach"
@@ -53,6 +54,7 @@ export default function About() {
             label="Community"
             value="BOD, Club Service — Rotaract"
             sub="Rotaract Club of Thane North End — leading service projects, coordinating volunteers, and planning + budgeting initiatives"
+            labelColor="amber"
             // span
           />
         </div>
@@ -66,15 +68,17 @@ function FactCard({
   value,
   sub,
   span,
+  labelColor = 'accent',
 }: {
   label: string;
   value: string;
   sub: string;
   span?: boolean;
+  labelColor?: 'accent' | 'amber';
 }) {
   return (
     <div className={`bg-[#0B0C0F] p-6 transition-colors hover:bg-[#0F1013] ${span ? 'sm:col-span-2' : ''}`}>
-      <div className="text-[11px] uppercase tracking-[0.12em] text-accent">{label}</div>
+      <div className={`text-[11px] uppercase tracking-[0.12em] ${labelColor === 'amber' ? 'text-amber' : 'text-accent'}`}>{label}</div>
       <div className="mt-2 font-garamond text-[19px] font-medium text-[#F5F5F7]">{value}</div>
       <div className="mt-1 text-[13px] text-[#8E9096]">{sub}</div>
     </div>

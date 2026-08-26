@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { colors } from '@/lib/colors';
 
 interface Sparkle {
   x: number;
@@ -43,7 +44,7 @@ export default function CursorSparkles() {
           maxLife: 30 + Math.random() * 20,
           driftX: Math.cos(angle) * speed,
           driftY: Math.sin(angle) * speed,
-          color: Math.random() < 0.4 ? '#1FDCD2' : '#F5F5F7',
+          color: Math.random() < 0.4 ? colors.accent : colors.silverLight,
         });
       }
     };
@@ -60,7 +61,7 @@ export default function CursorSparkles() {
         maxLife: 40 + Math.random() * 25,
         driftX: (Math.random() - 0.5) * 0.6,
         driftY: (Math.random() - 0.5) * 0.6 - 0.3,
-        color: Math.random() < 0.3 ? '#1FDCD2' : '#F5F5F7',
+        color: Math.random() < 0.3 ? colors.accent : colors.silverLight,
       });
     };
 

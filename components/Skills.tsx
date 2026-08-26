@@ -7,6 +7,7 @@ type SkillGroup = {
   icon: string;
   center: [number, number];
   skills: string[];
+  color?: 'accent' | 'amber';
 };
 
 // Each group has exactly 4 skills, arranged top/right/bottom/left around
@@ -22,7 +23,7 @@ const NODE_OFFSETS: [number, number][] = [
 const desktopGroups: SkillGroup[] = [
   { label: 'Core', icon: '✦', center: [170, 330], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
   { label: 'Frameworks', icon: '◆', center: [470, 150], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
-  { label: 'Back-end & Data', icon: '●', center: [790, 330], skills: ['PHP', 'SQL', 'Python', 'Networking'] },
+  { label: 'Back-end & Data', icon: '●', center: [790, 330], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
   { label: 'Tools', icon: '▲', center: [1080, 150], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
 ];
 
@@ -32,7 +33,7 @@ const desktopGroups: SkillGroup[] = [
 const mobileGroups: SkillGroup[] = [
   { label: 'Core', icon: '✦', center: [200, 160], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
   { label: 'Frameworks', icon: '◆', center: [200, 540], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
-  { label: 'Back-end & Data', icon: '●', center: [200, 920], skills: ['PHP', 'SQL', 'Python', 'Networking'] },
+  { label: 'Back-end & Data', icon: '●', center: [200, 920], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
   { label: 'Tools', icon: '▲', center: [200, 1300], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
 ];
 
@@ -42,7 +43,7 @@ const mobileGroups: SkillGroup[] = [
 const tabletGroups: SkillGroup[] = [
   { label: 'Core', icon: '✦', center: [220, 220], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
   { label: 'Frameworks', icon: '◆', center: [620, 220], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
-  { label: 'Back-end & Data', icon: '●', center: [220, 680], skills: ['PHP', 'SQL', 'Python', 'Networking'] },
+  { label: 'Back-end & Data', icon: '●', center: [220, 680], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
   { label: 'Tools', icon: '▲', center: [620, 680], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
 ];
 
@@ -100,7 +101,7 @@ function ConstellationSVG({
             x={group.center[0]}
             y={group.center[1] - 118}
             textAnchor="middle"
-            className="fill-accent uppercase tracking-[0.1em]"
+            className={`${group.color === 'amber' ? 'fill-amber' : 'fill-accent'} uppercase tracking-[0.1em]`}
             style={{ ...textHalo, fontSize: labelSize, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}
           >
             {group.icon} {group.label}
@@ -130,17 +131,17 @@ function ConstellationSVG({
                   y1={group.center[1]}
                   x2={x}
                   y2={y}
-                  stroke="#8E9096"
-                  strokeOpacity={0.3}
+                  stroke={group.color === 'amber' ? '#F5A623' : '#8E9096'}
+                  strokeOpacity={group.color === 'amber' ? 0.35 : 0.3}
                   strokeWidth={1}
-                  className="transition-all duration-300 group-hover:stroke-accent group-hover:stroke-opacity-80"
+                  className={`transition-all duration-300 group-hover:stroke-opacity-80 ${group.color === 'amber' ? 'group-hover:stroke-amber' : 'group-hover:stroke-accent'}`}
                 />
                 <circle
                   cx={x}
                   cy={y}
                   r={4.5}
                   filter={`url(#${glowId})`}
-                  className="fill-[#D8D9DE] transition-all duration-300 group-hover:fill-accent"
+                  className={`transition-all duration-300 ${group.color === 'amber' ? 'fill-amber group-hover:fill-amber' : 'fill-[#D8D9DE] group-hover:fill-accent'}`}
                   style={{ animation: `twinkle 3.2s ease-in-out ${twinkleDelay}s infinite` }}
                 />
                 <text

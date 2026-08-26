@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { colors } from '@/lib/colors';
 
 export default function SpaceScene() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -42,7 +43,7 @@ export default function SpaceScene() {
     const starSprite = new THREE.CanvasTexture(spriteCanvas);
 
     const starMat = new THREE.PointsMaterial({
-      color: 0xf5f5f7,
+      color: colors.silverLight,
       size: 0.045,
       map: starSprite,
       transparent: true,
@@ -61,9 +62,9 @@ export default function SpaceScene() {
     const globePositions = new Float32Array(pointCount * 3);
     const globeColors = new Float32Array(pointCount * 3);
 
-    const silver = new THREE.Color('#D8D9DE');
-    const silverBright = new THREE.Color('#F5F5F7');
-    const accent = new THREE.Color('#1FDCD2');
+    const silver = new THREE.Color(colors.silver);
+    const silverBright = new THREE.Color(colors.silverLight);
+    const accent = new THREE.Color(colors.accent);
 
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < pointCount; i++) {
@@ -99,7 +100,7 @@ export default function SpaceScene() {
 
     const haloGeo = new THREE.SphereGeometry(radius * 1.08, 32, 32);
     const haloMat = new THREE.MeshBasicMaterial({
-      color: 0x1fdcd2,
+      color: colors.accent,
       transparent: true,
       opacity: 0.035,
       side: THREE.BackSide,

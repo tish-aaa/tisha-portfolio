@@ -21,10 +21,14 @@ export default function SiteScraperPage() {
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {['Python', 'Playwright', 'playwright-stealth', 'PHP', 'DOMXPath'].map((tag) => (
+          {['Python', 'Playwright', 'playwright-stealth', 'PHP', 'DOMXPath'].map((tag, i) => (
             <span
               key={tag}
-              className="rounded-full border border-[#8E9096]/40 px-3.5 py-1.5 text-[12px] text-[#B8BABE]"
+              className={`rounded-full border px-3.5 py-1.5 text-[12px] ${
+                i % 2 === 0
+                  ? 'border-accent/40 text-accent'
+                  : 'border-amber/40 text-amber'
+              }`}
             >
               {tag}
             </span>

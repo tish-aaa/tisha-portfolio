@@ -51,7 +51,7 @@ export default function Timeline() {
 
         <div className="flex flex-col gap-16">
           {milestones.map((m, i) => (
-            <TimelineRow key={m.title} milestone={m} index={i} progress={scrollYProgress} total={milestones.length} />
+            <TimelineRow key={m.title} milestone={m} index={i} progress={scrollYProgress} total={milestones.length} isMostRecent={i === milestones.length - 1} />
           ))}
         </div>
       </div>
@@ -64,19 +64,23 @@ function TimelineRow({
   index,
   progress,
   total,
+  isMostRecent,
 }: {
   milestone: Milestone;
   index: number;
   progress: MotionValue<number>;
   total: number;
+  isMostRecent: boolean;
 }) {
   const isRight = index % 2 === 1;
   const activeAt = index / (total - 1);
-  const nodeColor = useTransform(progress, [Math.max(0, activeAt - 0.03), activeAt], ['#8E9096', '#1FDCD2']);
+  const activeColor = isMostRecent ? '#F5A623' : '#1FDCD2';
+  const activeGlow = isMostRecent ? '245,166,35' : '31,220,210';
+  const nodeColor = useTransform(progress, [Math.max(0, activeAt - 0.03), activeAt], ['#8E9096', activeColor]);
   const nodeGlow = useTransform(
     progress,
     [Math.max(0, activeAt - 0.03), activeAt],
-    ['0 0 0px rgba(31,220,210,0)', '0 0 10px rgba(31,220,210,0.8)']
+    [`0 0 0px rgba(${activeGlow},0)`, `0 0 10px rgba(${activeGlow},0.8)`]
   );
 
   return (

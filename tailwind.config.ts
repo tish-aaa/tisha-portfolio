@@ -14,10 +14,12 @@ const config: Config = {
           light: '#F5F5F7',
           DEFAULT: '#D8D9DE',
           dim: '#8E9096',
+          body: '#B8BABE',
         },
         ice: '#7C93B8',
         muted: '#6B6D74',
         accent: '#1FDCD2',
+        accentHover: '#22E1DF',
         amber: '#F5A623',
       },
       fontFamily: {

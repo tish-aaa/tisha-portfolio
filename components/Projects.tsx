@@ -3,6 +3,7 @@ type Project = {
   title: string;
   tags: string[];
   desc: string;
+  titleColor: 'accent' | 'amber';
 };
 
 const projects: Project[] = [
@@ -11,12 +12,14 @@ const projects: Project[] = [
     title: 'Image Scraper Pipeline',
     tags: ['Python', 'Playwright', 'PHP', 'DOMXPath'],
     desc: 'A dual-language scraper — Python drives a real browser in stealth mode, PHP parses static HTML directly. Built to pull listing images off classifieds sites reliably.',
+    titleColor: 'amber',
   },
   {
     slug: 'outfit-maven',
     title: 'Outfit Maven',
     tags: ['Flutter', 'Dart', 'PHP', 'MySQL', 'MongoDB', 'Razorpay'],
     desc: 'Solo-built, research-driven fashion social-commerce app — feed, checkout, and a quiz engine for outfit recs. 90% complete.',
+    titleColor: 'accent',
   },
 ];
 
@@ -40,7 +43,11 @@ export default function Projects() {
               className="flex items-center justify-between py-8 transition-colors hover:bg-[#8E9096]/5"
             >
               <div>
-                <div className="font-garamond text-[32px] font-semibold text-[#F5F5F7] transition-colors group-hover:text-accent sm:text-[44px]">
+                <div
+                  className={`font-garamond text-[32px] font-semibold transition-colors sm:text-[44px] ${
+                    project.titleColor === 'amber' ? 'text-amber' : 'text-accent'
+                  }`}
+                >
                   {project.title}
                 </div>
                 <div className="mt-2 flex flex-wrap gap-2">
