@@ -12,7 +12,7 @@ const projects: Project[] = [
     title: 'Image Scraper Pipeline',
     tags: ['Python', 'Playwright', 'PHP', 'DOMXPath'],
     desc: 'A dual-language scraper — Python drives a real browser in stealth mode, PHP parses static HTML directly. Built to pull listing images off classifieds sites reliably.',
-    titleColor: 'amber',
+    titleColor: 'accent',
   },
   {
     slug: 'outfit-maven',
@@ -27,7 +27,7 @@ export default function Projects() {
   return (
     <section id="projects" className="relative z-10 px-[6vw] py-32">
       <div className="mb-16">
-        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
+        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-amber">
           Projects
         </div>
         <h2 className="max-w-[600px] font-garamond text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-silver-light">

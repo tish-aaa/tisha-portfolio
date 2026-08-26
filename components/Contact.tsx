@@ -52,7 +52,7 @@ export default function Contact() {
     <section id="contact" ref={sectionRef} className="relative z-10 overflow-hidden px-[6vw] py-32">
       <div className="grid gap-16 md:grid-cols-[1.1fr_0.9fr] md:items-center">
         <div>
-          <div className="mb-4 text-[11px] uppercase tracking-[0.15em] text-silver-dim" style={fadeUp(0)}>
+          <div className="mb-4 text-[11px] uppercase tracking-[0.15em] text-amber" style={fadeUp(0)}>
             Contact
           </div>
           <h2
@@ -83,7 +83,7 @@ export default function Contact() {
           </div>
 
           <div className="mt-16 border-t border-silver-dim/20 pt-8" style={fadeUp(280)}>
-            <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.15em] text-silver-dim">
+            <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.15em] text-amber">
               Open channels
             </div>
             {channels.map((c, i) => (

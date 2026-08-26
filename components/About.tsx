@@ -3,7 +3,7 @@ export default function About() {
     <section id="about" className="relative z-10 px-[6vw] py-32">
       <div className="grid gap-10 md:grid-cols-[1fr_1.1fr]">
         <div>
-          <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
+          <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-amber">
             About
           </div>
           <h2 className="font-garamond text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-silver-light">

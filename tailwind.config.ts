@@ -20,7 +20,7 @@ const config: Config = {
         muted: '#6B6D74',
         accent: '#1FDCD2',
         accentHover: '#22E1DF',
-        amber: '#F5A623',
+        amber: '#FFDF00',
       },
       fontFamily: {
         garamond: ['var(--font-garamond)', 'serif'],

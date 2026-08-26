@@ -54,7 +54,7 @@ export default function SpaceScene() {
     scene.add(stars);
 
     const globeGroup = new THREE.Group();
-    globeGroup.position.set(1, 0.2, -1);
+    globeGroup.position.set(5, 0.2, -1);
     scene.add(globeGroup);
 
     const pointCount = 2400;

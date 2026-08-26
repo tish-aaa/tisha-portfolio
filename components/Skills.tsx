@@ -21,30 +21,30 @@ const NODE_OFFSETS: [number, number][] = [
 
 // Desktop: clusters zig-zag left-to-right across a wide viewBox.
 const desktopGroups: SkillGroup[] = [
-  { label: 'Core', icon: '✦', center: [170, 330], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
-  { label: 'Frameworks', icon: '◆', center: [470, 150], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
+  { label: 'Core', icon: '✦', center: [170, 330], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], color: 'amber' },
+  { label: 'Frameworks', icon: '◆', center: [470, 150], skills: ['jQuery', 'Laravel', 'Next.js', 'React'], color: 'amber' },
   { label: 'Back-end & Data', icon: '●', center: [790, 330], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
-  { label: 'Tools', icon: '▲', center: [1080, 150], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
+  { label: 'Tools', icon: '▲', center: [1080, 150], skills: ['Git', 'VS Code', 'Power BI', 'Excel'], color: 'amber' },
 ];
 
 // Mobile: same clusters, same skills, just stacked vertically in a
 // portrait viewBox instead of spread horizontally — same visual language,
 // laid out for a narrow screen instead of being a squished copy of it.
 const mobileGroups: SkillGroup[] = [
-  { label: 'Core', icon: '✦', center: [200, 160], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
-  { label: 'Frameworks', icon: '◆', center: [200, 540], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
+  { label: 'Core', icon: '✦', center: [200, 160], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], color: 'amber' },
+  { label: 'Frameworks', icon: '◆', center: [200, 540], skills: ['jQuery', 'Laravel', 'Next.js', 'React'], color: 'amber' },
   { label: 'Back-end & Data', icon: '●', center: [200, 920], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
-  { label: 'Tools', icon: '▲', center: [200, 1300], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
+  { label: 'Tools', icon: '▲', center: [200, 1300], skills: ['Git', 'VS Code', 'Power BI', 'Excel'], color: 'amber' },
 ];
 
 // Tablet (768–1199px): a 2×2 grid instead of either the wide zig-zag
 // (too cramped at this width) or the tall vertical stack (wastes the
 // extra horizontal room an iPad actually has).
 const tabletGroups: SkillGroup[] = [
-  { label: 'Core', icon: '✦', center: [220, 220], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'] },
-  { label: 'Frameworks', icon: '◆', center: [620, 220], skills: ['jQuery', 'Laravel', 'Next.js', 'React'] },
+  { label: 'Core', icon: '✦', center: [220, 220], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], color: 'amber' },
+  { label: 'Frameworks', icon: '◆', center: [620, 220], skills: ['jQuery', 'Laravel', 'Next.js', 'React'], color: 'amber' },
   { label: 'Back-end & Data', icon: '●', center: [220, 680], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
-  { label: 'Tools', icon: '▲', center: [620, 680], skills: ['Git', 'VS Code', 'Power BI', 'Excel'] },
+  { label: 'Tools', icon: '▲', center: [620, 680], skills: ['Git', 'VS Code', 'Power BI', 'Excel'], color: 'amber' },
 ];
 
 // Text halo — a dark stroke drawn behind each label so it stays readable
@@ -131,7 +131,7 @@ function ConstellationSVG({
                   y1={group.center[1]}
                   x2={x}
                   y2={y}
-                  stroke={group.color === 'amber' ? '#F5A623' : '#8E9096'}
+                  stroke={group.color === 'amber' ? '#FFDF00' : '#8E9096'}
                   strokeOpacity={group.color === 'amber' ? 0.35 : 0.3}
                   strokeWidth={1}
                   className={`transition-all duration-300 group-hover:stroke-opacity-80 ${group.color === 'amber' ? 'group-hover:stroke-amber' : 'group-hover:stroke-accent'}`}
@@ -185,7 +185,7 @@ export default function Skills() {
   return (
     <section ref={sectionRef} id="skills" className="relative z-10 px-[6vw] py-32">
       <div className="mb-14">
-        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
+        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-amber">
           Skills
         </div>
         <h2 className="max-w-[600px] font-garamond text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-silver-light">

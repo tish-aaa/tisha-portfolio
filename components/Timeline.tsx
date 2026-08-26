@@ -32,7 +32,7 @@ export default function Timeline() {
   return (
     <section id="journey" className="relative z-10 px-[6vw] py-32">
       <div className="mb-20">
-        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
+        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-amber">
           Journey
         </div>
         <h2 className="max-w-[500px] font-garamond text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.15] text-silver-light">
@@ -74,7 +74,7 @@ function TimelineRow({
 }) {
   const isRight = index % 2 === 1;
   const activeAt = index / (total - 1);
-  const activeColor = isMostRecent ? '#F5A623' : '#1FDCD2';
+  const activeColor = isMostRecent ? '#FFDF00' : '#1FDCD2';
   const activeGlow = isMostRecent ? '245,166,35' : '31,220,210';
   const nodeColor = useTransform(progress, [Math.max(0, activeAt - 0.03), activeAt], ['#8E9096', activeColor]);
   const nodeGlow = useTransform(

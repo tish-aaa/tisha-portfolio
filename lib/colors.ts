@@ -9,7 +9,7 @@ export const colors = {
   bodyText: '#B8BABE',
   accent: '#1FDCD2',
   accentHover: '#22E1DF',
-  amber: '#F5A623',
+  amber: '#FFDF00',
   ice: '#7C93B8',
   muted: '#6B6D74',
   cream: '#ECF8F8',
