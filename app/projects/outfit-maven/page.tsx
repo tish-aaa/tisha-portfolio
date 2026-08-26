@@ -1,18 +1,18 @@
 export default function OutfitMavenPage() {
   return (
-    <main className="min-h-screen bg-[#0B0C0F] px-[6vw] py-24 text-[#F5F5F7]">
-      <a href="/#projects" className="text-[13px] text-[#8E9096] transition-colors hover:text-accent">
+    <main className="min-h-screen bg-obsidian px-[6vw] py-24 text-silver-light">
+      <a href="/#projects" className="text-[13px] text-silver-dim transition-colors hover:text-accent">
         ← Back home
       </a>
 
       <div className="mt-10 max-w-[720px]">
-        <div className="mb-4 text-[11px] uppercase tracking-[0.15em] text-[#8E9096]">
+        <div className="mb-4 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
           Solo project — final year, ~90% complete
         </div>
         <h1 className="font-garamond text-[clamp(36px,5vw,60px)] font-semibold leading-[1.1]">
           Outfit Maven
         </h1>
-        <p className="mt-5 text-[16px] leading-relaxed text-[#B8BABE]">
+        <p className="mt-5 text-[16px] leading-relaxed text-silver-body">
           A Flutter-based fashion social-commerce app merging outfit
           inspiration, social interaction, and e-commerce — designed to
           solve outfit-planning fatigue and the cost of buying looks worn
@@ -23,7 +23,7 @@ export default function OutfitMavenPage() {
           {['Flutter', 'Dart', 'PHP', 'MySQL', 'MongoDB', 'Razorpay'].map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-[#8E9096]/40 px-3.5 py-1.5 text-[12px] text-[#B8BABE]"
+              className="rounded-full border border-silver-dim/40 px-3.5 py-1.5 text-[12px] text-silver-body"
             >
               {tag}
             </span>
@@ -36,17 +36,17 @@ export default function OutfitMavenPage() {
         <h2 className="font-garamond text-[26px] font-semibold text-accent">
           Started with research, not code
         </h2>
-        <p className="mt-4 text-[15px] leading-relaxed text-[#B8BABE]">
+        <p className="mt-4 text-[15px] leading-relaxed text-silver-body">
           Before writing a line of Flutter, I ran a survey to validate the
           idea and prioritize features — rather than assume what people
           wanted.
         </p>
-        <div className="mt-8 grid grid-cols-3 gap-6 border-t border-[#8E9096]/20 pt-8">
+        <div className="mt-8 grid grid-cols-3 gap-6 border-t border-silver-dim/20 pt-8">
           <Stat value="88.9%" label="face outfit-planning challenges" />
           <Stat value="66.7%" label="cite budget as the top pain point" />
           <Stat value="88.9%" label="rated Recommendations + Inspo as must-have" />
         </div>
-        <p className="mt-6 text-[15px] leading-relaxed text-[#B8BABE]">
+        <p className="mt-6 text-[15px] leading-relaxed text-silver-body">
           That data directly shaped scope — I explicitly cut AR try-on and
           seller-account features after respondents showed low interest,
           rather than building them speculatively.
@@ -58,7 +58,7 @@ export default function OutfitMavenPage() {
         <h2 className="font-garamond text-[26px] font-semibold text-accent">
           Where existing apps fell short
         </h2>
-        <p className="mt-4 text-[15px] leading-relaxed text-[#B8BABE]">
+        <p className="mt-4 text-[15px] leading-relaxed text-silver-body">
           I benchmarked StyleBook, Whering, and Poshmark before designing
           the feature set. None combined inspiration browsing, buying, and
           social feedback in one place — and none supported posting
@@ -79,7 +79,7 @@ export default function OutfitMavenPage() {
             'Full commerce flow — cart, address management, checkout, Razorpay payment, order history',
             'Complete post management — add, edit, delete, toggle private/public, mark items for sale with pricing',
           ].map((item) => (
-            <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-[#B8BABE]">
+            <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-silver-body">
               <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
               {item}
             </li>
@@ -92,7 +92,7 @@ export default function OutfitMavenPage() {
         <h2 className="font-garamond text-[26px] font-semibold text-accent">
           How it&apos;s built
         </h2>
-        <p className="mt-4 text-[15px] leading-relaxed text-[#B8BABE]">
+        <p className="mt-4 text-[15px] leading-relaxed text-silver-body">
           A 3-tier architecture — Flutter/Dart on the front end, PHP on the
           back end, MySQL and MongoDB for data — built solo using Agile/
           Scrum with incremental delivery. The full system was designed
@@ -108,8 +108,8 @@ export default function OutfitMavenPage() {
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <div className="font-garamond text-[32px] font-semibold text-[#F5F5F7]">{value}</div>
-      <div className="mt-1 text-[13px] leading-snug text-[#8E9096]">{label}</div>
+      <div className="font-garamond text-[32px] font-semibold text-silver-light">{value}</div>
+      <div className="mt-1 text-[13px] leading-snug text-silver-dim">{label}</div>
     </div>
   );
 }

@@ -2,10 +2,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 border-t border-[#8E9096]/15 px-[6vw] py-16">
+    <footer className="relative z-10 border-t border-silver-dim/15 px-[6vw] py-16">
       <a
         href="#contact"
-        className="group flex items-center gap-4 font-garamond text-[clamp(28px,4vw,44px)] font-semibold text-[#F5F5F7] transition-colors hover:text-accent"
+        className="group flex items-center gap-4 font-garamond text-[clamp(28px,4vw,44px)] font-semibold text-silver-light transition-colors hover:text-accent"
       >
         Still here? Let&apos;s talk
         <span className="transition-transform duration-300 group-hover:translate-x-2">↗</span>
@@ -15,8 +15,8 @@ export default function Footer() {
         <div className="flex items-center gap-3">
           <StarMark />
           <div>
-            <div className="font-garamond text-[15px] text-[#D8D9DE]">Tisha Sharma</div>
-            <div className="text-[12px] text-[#8E9096]">
+            <div className="font-garamond text-[15px] text-silver">Tisha Sharma</div>
+            <div className="text-[12px] text-silver-dim">
               © {year} — built with Next.js, Tailwind &amp; Three.js
             </div>
           </div>
@@ -24,7 +24,7 @@ export default function Footer() {
 
         <a
           href="#top"
-          className="text-[12px] uppercase tracking-[0.1em] text-[#8E9096] transition-colors hover:text-accent"
+          className="text-[12px] uppercase tracking-[0.1em] text-silver-dim transition-colors hover:text-accent"
         >
           Back to top ↑
         </a>

@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <section id="top" className="relative z-10 flex min-h-screen flex-col justify-center px-[6vw]">
-      <div className="mb-[18px] flex w-fit items-center gap-2 rounded-full border border-[#8E9096] px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] text-[#D8D9DE]">
+      <div className="mb-[18px] flex w-fit items-center gap-2 rounded-full border border-silver-dim px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] text-silver">
         <span className="h-1.5 w-1.5 rounded-full bg-amber shadow-[0_0_8px_rgba(245,166,35,0.8)]" />
         Full stack developer · front-end
       </div>
@@ -16,7 +16,7 @@ export default function Hero() {
         that work.
       </h1>
 
-      <p className="mt-6 max-w-[560px] text-base leading-relaxed text-[#B8BABE]">
+      <p className="mt-6 max-w-[560px] text-base leading-relaxed text-silver-body">
         Front-end focused full stack developer currently expanding into data.
         This is where the code, the curiosity, and the trajectory live.
       </p>
@@ -24,14 +24,14 @@ export default function Hero() {
       <div className="mt-11 flex gap-4">
         <a
           href="#projects"
-          className="rounded-full bg-[#F5F5F7] px-7 py-3.5 font-garamond text-[15px] font-medium text-[#0B0C0F] transition-all hover:bg-white hover:shadow-[0_0_30px_rgba(245,245,247,0.4)]"
+          className="rounded-full bg-silver-light px-7 py-3.5 font-garamond text-[15px] font-medium text-obsidian transition-all hover:bg-white hover:shadow-[0_0_30px_rgba(245,245,247,0.4)]"
         >
           View my work
         </a>
         <div className="contact-box flex flex-row gap-4">
           <a
             href="#contact"
-            className="rounded-full border border-[#8E9096] px-7 py-3.5 font-garamond text-[15px] font-medium text-[#F5F5F7] transition-colors hover:border-accent hover:text-accent"
+            className="rounded-full border border-silver-dim px-7 py-3.5 font-garamond text-[15px] font-medium text-silver-light transition-colors hover:border-accent hover:text-accent"
           >
             Get in touch
           </a>

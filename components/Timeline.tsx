@@ -32,17 +32,17 @@ export default function Timeline() {
   return (
     <section id="journey" className="relative z-10 px-[6vw] py-32">
       <div className="mb-20">
-        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-[#8E9096]">
+        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
           Journey
         </div>
-        <h2 className="max-w-[500px] font-garamond text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.15] text-[#F5F5F7]">
+        <h2 className="max-w-[500px] font-garamond text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.15] text-silver-light">
           How I got here.
         </h2>
       </div>
 
       <div ref={containerRef} className="relative mx-auto max-w-[900px]">
         {/* base track */}
-        <div className="absolute left-[7px] top-0 h-full w-px bg-[#8E9096]/20 md:left-1/2 md:-translate-x-1/2" />
+        <div className="absolute left-[7px] top-0 h-full w-px bg-silver-dim/20 md:left-1/2 md:-translate-x-1/2" />
         {/* glowing fill that grows as you scroll through the section */}
         <motion.div
           className="absolute left-[7px] top-0 w-px bg-accent shadow-[0_0_8px_rgba(31,220,210,0.6)] md:left-1/2 md:-translate-x-1/2"
@@ -98,9 +98,9 @@ function TimelineRow({
         className={`pl-8 md:pl-0 ${isRight ? 'md:col-start-2 md:pl-16' : 'md:col-start-1 md:pr-16 md:text-right'}`}
       >
         <div className="text-[13px] uppercase tracking-[0.12em] text-accent">{milestone.date}</div>
-        <div className="mt-2 font-garamond text-[24px] font-semibold text-[#F5F5F7]">{milestone.title}</div>
-        <div className="mt-1 text-[14px] text-[#8E9096]">{milestone.org}</div>
-        <p className={`mt-3 max-w-[380px] text-[14px] leading-relaxed text-[#B8BABE] ${isRight ? '' : 'md:ml-auto'}`}>
+        <div className="mt-2 font-garamond text-[24px] font-semibold text-silver-light">{milestone.title}</div>
+        <div className="mt-1 text-[14px] text-silver-dim">{milestone.org}</div>
+        <p className={`mt-3 max-w-[380px] text-[14px] leading-relaxed text-silver-body ${isRight ? '' : 'md:ml-auto'}`}>
           {milestone.desc}
         </p>
       </motion.div>

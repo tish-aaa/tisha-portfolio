@@ -141,14 +141,14 @@ function ConstellationSVG({
                   cy={y}
                   r={4.5}
                   filter={`url(#${glowId})`}
-                  className={`transition-all duration-300 ${group.color === 'amber' ? 'fill-amber group-hover:fill-amber' : 'fill-[#D8D9DE] group-hover:fill-accent'}`}
+                  className={`transition-all duration-300 ${group.color === 'amber' ? 'fill-amber group-hover:fill-amber' : 'fill-silver group-hover:fill-accent'}`}
                   style={{ animation: `twinkle 3.2s ease-in-out ${twinkleDelay}s infinite` }}
                 />
                 <text
                   x={x}
                   y={y - 16}
                   textAnchor="middle"
-                  className="fill-[#B8BABE] font-garamond transition-all duration-300 group-hover:fill-[#F5F5F7]"
+                  className="fill-silver-body font-garamond transition-all duration-300 group-hover:fill-silver-light"
                   style={{ ...textHalo, fontSize: skillSize }}
                 >
                   {skill}
@@ -185,10 +185,10 @@ export default function Skills() {
   return (
     <section ref={sectionRef} id="skills" className="relative z-10 px-[6vw] py-32">
       <div className="mb-14">
-        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-[#8E9096]">
+        <div className="mb-5 text-[11px] uppercase tracking-[0.15em] text-silver-dim">
           Skills
         </div>
-        <h2 className="max-w-[600px] font-garamond text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-[#F5F5F7]">
+        <h2 className="max-w-[600px] font-garamond text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-silver-light">
           Comfortable across the stack.
         </h2>
       </div>
