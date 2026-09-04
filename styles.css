@@ -74,6 +74,9 @@ p {
     border: 1px solid #1D8A7A; padding: 5px 15px; 
     font-size: 0.7rem; color: #1D8A7A; 
     letter-spacing: 2px; text-transform: uppercase; 
+    border-radius: 25%;
+    max-width: 222px;
+    margin: auto;
 }
 
 /* LAUNCH PROGRESS BAR */
