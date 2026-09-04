@@ -278,28 +278,26 @@ p {
 /* the sky of clouds */
 .sky {
     width: 100%;
-    max-width: 780px;
-    columns: 2;
-    column-gap: 26px;
-}
-@media (max-width: 640px) {
-    .sky { columns: 1; }
+    max-width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .cloud-card {
     position: relative;
-    break-inside: avoid;
     background-image: url('cloud.png');
-    background-size: 110% 110%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: center;
-    padding: 75px 48px 52px;
-    margin: 26px 6px 40px;
+    padding: 46px 48px 52px;
+    margin: 10px 4px;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 150px;
+    transform: rotate(var(--rot, 0deg));
     animation: cloudFloat 7s ease-in-out infinite;
 }
 .cloud-card:nth-child(2n) { animation-delay: 1.4s; }
@@ -307,8 +305,12 @@ p {
 .cloud-card:nth-child(4n) { animation-delay: 0.7s; }
 
 @keyframes cloudFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-9px); }
+    0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+    50% { transform: rotate(var(--rot, 0deg)) translateY(-9px); }
+}
+
+.cloud-content {
+    transform: rotate(calc(var(--rot, 0deg) * -1));
 }
 
 .cloud-card p {

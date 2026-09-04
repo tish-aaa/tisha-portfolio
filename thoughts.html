@@ -33,7 +33,7 @@
       </div>
 
       <!-- Replace this action URL with your own Formspree (or similar) endpoint -->
-      <form class="thought-form" id="thought-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+      <form class="thought-form" id="thought-form" action="https://formspree.io/f/mqpklkjy" method="POST">
         <input type="text" name="name" placeholder="Your name or handle" required>
         <textarea name="message" placeholder="Your thought..." required></textarea>
         <button type="submit">Send it up</button>
@@ -48,16 +48,30 @@
     <script>
       // Renders the approved thoughts from thoughts-data.js as clouds.
       const sky = document.getElementById('sky');
-      APPROVED_THOUGHTS.forEach(t => {
+      APPROVED_THOUGHTS.forEach((t, i) => {
         const card = document.createElement('div');
         card.className = 'cloud-card';
+
+        // scatter: random width, tilt, and vertical drift so clouds don't line up in a grid
+        const width = 220 + Math.random() * 100;
+        const rotate = (Math.random() * 8 - 4).toFixed(1);
+        const drift = (i % 2 === 0 ? 1 : -1) * (10 + Math.random() * 30);
+        card.style.width = width + 'px';
+        card.style.setProperty('--rot', rotate + 'deg');
+        card.style.marginTop = Math.max(0, drift) + 'px';
+        card.style.marginBottom = Math.max(0, -drift) + 'px';
+
+        const content = document.createElement('div');
+        content.className = 'cloud-content';
+
         const p = document.createElement('p');
         p.textContent = t.message;
         const from = document.createElement('div');
         from.className = 'from';
         from.textContent = '— ' + t.name;
-        card.appendChild(p);
-        card.appendChild(from);
+        content.appendChild(p);
+        content.appendChild(from);
+        card.appendChild(content);
         sky.appendChild(card);
       });
 
