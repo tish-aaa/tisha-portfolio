@@ -76,7 +76,7 @@ p {
     letter-spacing: 2px; text-transform: uppercase; 
     border-radius: 25%;
     max-width: 222px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 /* LAUNCH PROGRESS BAR */
