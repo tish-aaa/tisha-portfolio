@@ -24,9 +24,19 @@
         <div class="badge">Digital Space Coming Soon</div>
         <h1>Tisha Sharma</h1>
         <h2>Full Stack Developer specialized in Front-end</h2>
-        <p>Preparing to build a crowdsourced environmental tracker for India. <br>Collaborations & inputs are appreciated! :)</p>
+
+        <div class="progress-block" aria-label="Portfolio launch progress">
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-label">
+            <span id="progress-percent"></span> of the way to launch
+          </div>
+        </div>
+
         <div class="contact-box">
           <a href="mailto:hello@tishasharma.in">hello@tishasharma.in</a>
+          <a href="thoughts.html">drop your thoughts here!</a>
           <div class="social-icons">
             <a href="https://github.com/tish-aaa" target="_blank" aria-label="GitHub">
               <i class="fa-brands fa-github"></i>
@@ -37,5 +47,14 @@
           </div>
         </div>
     </div>
+
+    <script>
+      // Update this number as sections/features of the real site get finished.
+      // It's the only thing you need to touch to move the bar.
+      const LAUNCH_PROGRESS_PERCENT = 80;
+
+      document.getElementById('progress-fill').style.width = LAUNCH_PROGRESS_PERCENT + '%';
+      document.getElementById('progress-percent').textContent = LAUNCH_PROGRESS_PERCENT + '%';
+    </script>
   </body>
 </html>
