@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import ScreenshotCarousel from '@/components/ScreenshotCarousel';
+import Nav from '@/components/Nav';
 
 function getScreenshots(): string[] {
   const dir = path.join(process.cwd(), 'public/projects/outfit-maven/screenshots');
@@ -23,6 +24,8 @@ function getScreenshots(): string[] {
 export default function OutfitMavenPage() {
   const screenshots = getScreenshots();
   return (
+    <>
+      <Nav />
     <main className="min-h-screen bg-[#0B0C0F] px-[6vw] py-24 text-[#F5F5F7]">
       <a href="/#projects" className="text-[13px] text-[#8E9096] transition-colors hover:text-accent">
         ← Back home
@@ -127,6 +130,7 @@ export default function OutfitMavenPage() {
         </p>
       </section>
     </main>
+    </>
   );
 }
 

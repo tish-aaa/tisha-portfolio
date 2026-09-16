@@ -15,10 +15,9 @@ export default function Nav() {
 
   return (
     <>
-      <nav
-        className="fixed top-0 right-0 z-50 w-full bg-obsidian/80 backdrop-blur-[5px] min-[992px]:w-[62%] min-[992px]:bg-transparent min-[992px]:[mask-image:linear-gradient(to_left,black_60%,transparent_99.9%)] min-[992px]:[-webkit-mask-image:linear-gradient(to_left,black_60%,transparent_99.9%)]"
-      >
-        <div className="flex flex-wrap items-center justify-between gap-y-0 px-[6vw] py-4 min-[992px]:px-[4vw]">
+      {/* Mobile/tablet bar — below 992px, unchanged from the original design */}
+      <nav className="fixed inset-x-0 top-0 z-50 w-full bg-obsidian/80 backdrop-blur-[5px] min-[992px]:hidden">
+        <div className="flex flex-wrap items-center justify-between gap-y-0 px-[6vw] py-4">
           <a href="#top" className="flex items-center gap-2.5">
             <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
               <path
@@ -30,8 +29,33 @@ export default function Nav() {
             <span className="font-garamond text-[16px] text-silver-light">Tisha Sharma</span>
           </a>
 
-          {/* desktop links — visible from 992px up */}
-          <div className="hidden items-center gap-6 min-[992px]:flex">
+          <button
+            onClick={() => setOpen(!open)}
+            className="z-50 flex flex-col gap-1.5"
+            aria-label="Toggle menu"
+          >
+            <span className={`h-px w-6 bg-silver-light transition-transform duration-300 ${open ? 'translate-y-[3.5px] rotate-45' : ''}`} />
+            <span className={`h-px w-6 bg-silver-light transition-transform duration-300 ${open ? '-translate-y-[3.5px] -rotate-45' : ''}`} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Desktop — 992px and up — a compact, self-sized floating pill,
+          centered on the page, name above the link row */}
+      <nav className="fixed left-1/2 top-4 z-50 hidden -translate-x-1/2 min-[992px]:block">
+        <div className="flex flex-col items-center gap-1 rounded-3xl bg-obsidian/60 px-8 py-2 backdrop-blur-[8px]">
+          <a href="#top" className="flex items-center gap-2.5">
+            <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
+              <path
+                d="M14 2 L16.2 11.8 L26 14 L16.2 16.2 L14 26 L11.8 16.2 L2 14 L11.8 11.8 Z"
+                className="fill-accent"
+                style={{ filter: 'drop-shadow(0 0 3px rgba(31,220,210,0.7))' }}
+              />
+            </svg>
+            <span className="font-garamond text-[16px] text-silver-light">Tisha Sharma</span>
+          </a>
+
+          <div className="flex items-center gap-6">
             {links.map((l) => (
               <a
                 key={l.href}
@@ -48,16 +72,6 @@ export default function Nav() {
               Say hi
             </a>
           </div>
-
-          {/* hamburger — visible below 992px */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="z-50 flex flex-col gap-1.5 min-[992px]:hidden"
-            aria-label="Toggle menu"
-          >
-            <span className={`h-px w-6 bg-silver-light transition-transform duration-300 ${open ? 'translate-y-[3.5px] rotate-45' : ''}`} />
-            <span className={`h-px w-6 bg-silver-light transition-transform duration-300 ${open ? '-translate-y-[3.5px] -rotate-45' : ''}`} />
-          </button>
         </div>
       </nav>
 

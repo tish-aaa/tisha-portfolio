@@ -1,5 +1,9 @@
+import Nav from '@/components/Nav';
+
 export default function SiteScraperPage() {
   return (
+    <>
+      <Nav />
     <main className="min-h-screen bg-obsidian px-[6vw] py-24 text-silver-light">
       <a href="/#projects" className="text-[13px] text-silver-dim transition-colors hover:text-accent">
         ← Back home
@@ -168,5 +172,6 @@ export default function SiteScraperPage() {
         </p>
       </section>
     </main>
+    </>
   );
 }
