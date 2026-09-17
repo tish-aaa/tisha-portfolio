@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Journey', href: '/#journey' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Nav() {
@@ -18,7 +19,7 @@ export default function Nav() {
       {/* Mobile/tablet bar — below 992px, unchanged from the original design */}
       <nav className="fixed inset-x-0 top-0 z-50 w-full bg-obsidian/80 backdrop-blur-[5px] min-[992px]:hidden">
         <div className="flex flex-wrap items-center justify-between gap-y-0 px-[6vw] py-4">
-          <a href="#top" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
               <path
                 d="M14 2 L16.2 11.8 L26 14 L16.2 16.2 L14 26 L11.8 16.2 L2 14 L11.8 11.8 Z"
@@ -27,7 +28,7 @@ export default function Nav() {
               />
             </svg>
             <span className="font-garamond text-[16px] text-silver-light">Tisha Sharma</span>
-          </a>
+          </Link>
 
           <button
             onClick={() => setOpen(!open)}
@@ -44,7 +45,7 @@ export default function Nav() {
           centered on the page, name above the link row */}
       <nav className="fixed left-1/2 top-4 z-50 hidden -translate-x-1/2 min-[992px]:block">
         <div className="flex flex-col items-center gap-1 rounded-3xl bg-obsidian/60 px-8 py-2 backdrop-blur-[8px]">
-          <a href="#top" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <svg width="18" height="18" viewBox="0 0 28 28" style={{ animation: 'spin-slow 12s linear infinite' }}>
               <path
                 d="M14 2 L16.2 11.8 L26 14 L16.2 16.2 L14 26 L11.8 16.2 L2 14 L11.8 11.8 Z"
@@ -53,24 +54,24 @@ export default function Nav() {
               />
             </svg>
             <span className="font-garamond text-[16px] text-silver-light">Tisha Sharma</span>
-          </a>
+          </Link>
 
           <div className="flex items-center gap-6">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="text-[13px] uppercase tracking-[0.08em] text-silver-dim transition-colors hover:text-accent"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="rounded-full border border-silver-dim/40 px-5 py-2 text-[13px] text-silver-light transition-colors hover:border-accent hover:text-accent"
             >
               Say hi
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -85,7 +86,7 @@ export default function Nav() {
       >
         <div className="mt-24 flex flex-col px-[6vw]">
           {links.map((l, i) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
@@ -102,15 +103,15 @@ export default function Nav() {
               <span className="font-garamond text-[26px] text-silver-light transition-colors group-hover:text-accent">
                 {l.label}
               </span>
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="flex items-center justify-between px-[6vw] pb-10 text-[12px] uppercase tracking-[0.1em] text-silver-dim">
           <span>Thane, India</span>
-          <a href="#contact" onClick={() => setOpen(false)} className="text-accent">
+          <Link href="/#contact" onClick={() => setOpen(false)} className="text-accent">
             Say hi →
-          </a>
+          </Link>
         </div>
       </div>
     </>
