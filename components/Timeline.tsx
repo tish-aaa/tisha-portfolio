@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { m, useScroll, useTransform, type MotionValue } from 'framer-motion';
 
 type Milestone = {
   date: string;
@@ -44,14 +44,14 @@ export default function Timeline() {
         {/* base track */}
         <div className="absolute left-[7px] top-0 h-full w-px bg-silver-dim/20 md:left-1/2 md:-translate-x-1/2" />
         {/* glowing fill that grows as you scroll through the section */}
-        <motion.div
+        <m.div
           className="absolute left-[7px] top-0 w-px bg-accent shadow-[0_0_8px_rgba(31,220,210,0.6)] md:left-1/2 md:-translate-x-1/2"
           style={{ height: lineHeight }}
         />
 
         <div className="flex flex-col gap-16">
-          {milestones.map((m, i) => (
-            <TimelineRow key={m.title} milestone={m} index={i} progress={scrollYProgress} total={milestones.length} isMostRecent={i === milestones.length - 1} />
+          {milestones.map((ms, i) => (
+            <TimelineRow key={ms.title} milestone={ms} index={i} progress={scrollYProgress} total={milestones.length} isMostRecent={i === milestones.length - 1} />
           ))}
         </div>
       </div>
@@ -85,12 +85,12 @@ function TimelineRow({
 
   return (
     <div className="relative grid gap-6 md:grid-cols-2">
-      <motion.div
+      <m.div
         className="absolute left-[7px] top-1.5 h-3.5 w-3.5 -translate-x-1/2 rounded-full md:left-1/2"
         style={{ backgroundColor: nodeColor, boxShadow: nodeGlow }}
       />
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
@@ -103,7 +103,7 @@ function TimelineRow({
         <p className={`mt-3 max-w-[380px] text-[14px] leading-relaxed text-silver-body ${isRight ? '' : 'md:ml-auto'}`}>
           {milestone.desc}
         </p>
-      </motion.div>
+      </m.div>
     </div>
   );
 }
