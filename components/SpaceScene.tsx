@@ -4,8 +4,9 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { colors } from '@/lib/colors';
 
-export default function SpaceScene() {
+export default function SpaceScene({ showGlobe = true }: { showGlobe?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const globeGroupRef = useRef<THREE.Group | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -55,7 +56,9 @@ export default function SpaceScene() {
 
     const globeGroup = new THREE.Group();
     globeGroup.position.set(5, 0.2, -1);
+    globeGroup.visible = showGlobe;
     scene.add(globeGroup);
+    globeGroupRef.current = globeGroup;
 
     const pointCount = 2400;
     const radius = 2.3;
@@ -151,8 +154,19 @@ export default function SpaceScene() {
       haloGeo.dispose();
       haloMat.dispose();
       renderer.dispose();
+      globeGroupRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Toggling visibility here (rather than tearing down and rebuilding the
+  // whole scene) is what lets the canvas stay persistent across route
+  // changes — the globe just hides/shows, no context recreation, no flicker.
+  useEffect(() => {
+    if (globeGroupRef.current) {
+      globeGroupRef.current.visible = showGlobe;
+    }
+  }, [showGlobe]);
 
   return (
     <canvas

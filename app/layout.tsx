@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { EB_Garamond, Inter } from 'next/font/google';
 import MotionProvider from '@/components/MotionProvider';
+import Nav from '@/components/Nav';
+import SiteBackground from '@/components/SiteBackground';
 import './globals.css';
 
 const garamond = EB_Garamond({
@@ -27,8 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${garamond.variable} ${inter.variable} font-sans`}>
+        <SiteBackground />
+        <Nav />
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
-}
+} 
