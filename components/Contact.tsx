@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 const EMAIL = 'hello@tishasharma.in';
 
@@ -68,12 +69,12 @@ export default function Contact() {
           </h2>
 
           <div className="mt-10 flex items-center gap-4" style={fadeUp(200)}>
-            <a
+            <Link
               href={`mailto:${EMAIL}`}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-garamond text-[16px] font-medium text-obsidian transition-all hover:bg-accentHover hover:shadow-[0_0_30px_rgba(31,220,210,0.45)]"
             >
               Say hello →
-            </a>
+            </Link>
             <button
               onClick={copyEmail}
               className="text-[13px] text-silver-dim underline decoration-dotted underline-offset-4 transition-colors hover:text-accent"
@@ -87,7 +88,7 @@ export default function Contact() {
               Open channels
             </div>
             {channels.map((c, i) => (
-              <a
+              <Link
                 key={c.ch}
                 href={c.href}
                 target={c.href.startsWith('http') ? '_blank' : undefined}
@@ -102,7 +103,7 @@ export default function Contact() {
                 <span className="bg-[linear-gradient(110deg,#F5F5F7_35%,#1FDCD2_45%,#F5F5F7_55%)] bg-[length:250%_100%] bg-clip-text font-garamond text-[18px] font-medium text-silver-light transition-[background-position] duration-700 max-[991px]:animate-shine max-[991px]:text-transparent group-hover:bg-[length:250%_100%] group-hover:[background-position:-100%_0] group-hover:text-transparent">
                   {c.value}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
 

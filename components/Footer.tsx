@@ -1,15 +1,17 @@
+import Link from 'next/link';
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="relative z-10 border-t border-silver-dim/15 px-[6vw] py-16">
-      <a
-        href="#contact"
+      <Link
+        href="/#contact"
         className="group flex items-center gap-4 font-garamond text-[clamp(28px,4vw,44px)] font-semibold text-silver-light transition-colors hover:text-accent"
       >
         Still here? Let&apos;s talk
         <span className="transition-transform duration-300 group-hover:translate-x-2">↗</span>
-      </a>
+      </Link>
 
       <div className="mt-14 flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-end">
         <div className="flex items-center gap-3">
@@ -22,12 +24,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <a
-          href="#top"
+        <Link
+          href="/#top"
           className="text-[12px] uppercase tracking-[0.1em] text-silver-dim transition-colors hover:text-accent"
         >
           Back to top ↑
-        </a>
+        </Link>
       </div>
     </footer>
   );

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 type Project = {
   slug: string;
   title: string;
@@ -38,7 +40,7 @@ export default function Projects() {
       <div className="border-t border-silver-dim/20">
         {projects.map((project) => (
           <div key={project.slug} className="group relative border-b border-silver-dim/20">
-            <a
+            <Link
               href={`/projects/${project.slug}`}
               className="flex items-center justify-between py-8 transition-colors hover:bg-silver-dim/5"
             >
@@ -61,7 +63,7 @@ export default function Projects() {
               <span className="hidden text-silver-dim transition-colors group-hover:text-accent sm:block">
                 View →
               </span>
-            </a>
+            </Link>
 
             {/* speech-bubble description — appears on hover, pure CSS,
                 anchored to this row rather than following the cursor */}

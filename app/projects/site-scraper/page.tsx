@@ -1,13 +1,14 @@
 import Nav from '@/components/Nav';
+import Link from 'next/link';
 
 export default function SiteScraperPage() {
   return (
     <>
       <Nav />
     <main className="min-h-screen bg-obsidian px-[6vw] py-24 text-silver-light">
-      <a href="/#projects" className="text-[13px] text-silver-dim transition-colors hover:text-accent">
+      <Link href="/#projects" className="text-[13px] text-silver-dim transition-colors hover:text-accent">
         ← Back home
-      </a>
+      </Link>
 
       <div className="mt-10 max-w-[720px]">
         <div className="mb-4 text-[11px] uppercase tracking-[0.15em] text-silver-dim">

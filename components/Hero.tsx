@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Hero() {
   return (
     <section id="top" className="relative z-10 flex min-h-screen flex-col justify-center px-[6vw]">
@@ -22,19 +24,19 @@ export default function Hero() {
       </p>
 
       <div className="mt-11 flex gap-4">
-        <a
+        <Link
           href="#projects"
           className="rounded-full bg-silver-light px-7 py-3.5 font-garamond text-[15px] font-medium text-obsidian transition-all hover:bg-white hover:shadow-[0_0_30px_rgba(245,245,247,0.4)]"
         >
           View my work
-        </a>
+        </Link>
         <div className="contact-box flex flex-row gap-4">
-          <a
+          <Link
             href="#contact"
             className="rounded-full border border-silver-dim px-7 py-3.5 font-garamond text-[15px] font-medium text-silver-light transition-colors hover:border-accent hover:text-accent"
           >
             Get in touch
-          </a>
+          </Link>
         </div>
       </div>
     </section>
