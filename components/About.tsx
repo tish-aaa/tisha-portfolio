@@ -9,15 +9,16 @@ export default function About() {
           <h2 className="font-garamond text-[clamp(32px,4vw,52px)] font-semibold leading-[1.15] text-silver-light">
             Front-end focused,
             <br />
-            data-curious.
+            full-stack built.
           </h2>
           <p className="mt-6 max-w-[440px] text-[15px] leading-relaxed text-silver-body">
             I build web tools and interfaces for clients across Ireland —
             everything from car configurators to lead-gen forms — with an
-            eye for detail that comes from testing before I ever wrote code.
-            Lately I&apos;m pointing that same curiosity at data: SQL,
-            analytics, and the systems behind the interfaces I&apos;ve spent
-            two years polishing.
+            eye for detail sharpened by testing other developers&apos; code
+            just as rigorously as I test my own. Full stack when the work
+            calls for it: extending legacy PHP and Laravel code and keeping
+            a shared base-template architecture consistent across projects,
+            without breaking what&apos;s already there.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2">
@@ -38,11 +39,11 @@ export default function About() {
           <FactCard label="Currently" value="Full Stack Developer specialized in Front-end" sub="Variety Tech Consultants · 2024–present" />
           <FactCard label="Education" value="BSc IT" sub="V.G. Vaze Kelkar, University of Mumbai" />
           <FactCard label="CGPA" value="9.1" sub="Across three years" />
-          <FactCard label="Certified in" value="Data Analytics" sub="Power BI · Python · Advanced Excel" />
+          <FactCard label="Certified in" value="Data Analytics" sub="Power BI · Basic Python · Advanced Excel · 2022" />
           <FactCard
-            label="Currently exploring"
-            value="India Data Center Transparency Tracker"
-            sub="A crowdsourced platform tracking data center construction against drought/groundwater risk — research phase"
+            label="Currently contributing"
+            value="RCTNE Club Website"
+            sub="Open-source collaborator — scoping and shipping fixes with Google's Antigravity agentic IDE"
             labelColor="amber"
           />
           {/* <FactCard
@@ -52,7 +53,7 @@ export default function About() {
           /> */}
           <FactCard
             label="Community"
-            value="BOD, Club Service — Rotaract"
+            value="Director, Club Service — Rotaract"
             sub="Rotaract Club of Thane North End — leading service projects, coordinating volunteers, and planning + budgeting initiatives"
             labelColor="amber"
             // span
