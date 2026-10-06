@@ -60,7 +60,7 @@ export default function SpaceScene({ showGlobe = true }: { showGlobe?: boolean }
     scene.add(globeGroup);
     globeGroupRef.current = globeGroup;
 
-    const pointCount = 2400;
+    const pointCount = 1400;
     const radius = 2.3;
     const globePositions = new Float32Array(pointCount * 3);
     const globeColors = new Float32Array(pointCount * 3);
@@ -81,7 +81,7 @@ export default function SpaceScene({ showGlobe = true }: { showGlobe?: boolean }
       globePositions[i * 3 + 1] = y * radius;
       globePositions[i * 3 + 2] = z * radius;
 
-      const isNode = Math.random() < 0.035;
+      const isNode = Math.random() < 0.025;
       const c = isNode ? accent : Math.random() < 0.5 ? silver : silverBright;
       globeColors[i * 3] = c.r;
       globeColors[i * 3 + 1] = c.g;
@@ -92,10 +92,10 @@ export default function SpaceScene({ showGlobe = true }: { showGlobe?: boolean }
     globeGeo.setAttribute('position', new THREE.BufferAttribute(globePositions, 3));
     globeGeo.setAttribute('color', new THREE.BufferAttribute(globeColors, 3));
     const globeMat = new THREE.PointsMaterial({
-      size: 0.028,
+      size: 0.02,
       vertexColors: true,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.55,
       sizeAttenuation: true,
     });
     const globe = new THREE.Points(globeGeo, globeMat);
@@ -105,7 +105,7 @@ export default function SpaceScene({ showGlobe = true }: { showGlobe?: boolean }
     const haloMat = new THREE.MeshBasicMaterial({
       color: colors.accent,
       transparent: true,
-      opacity: 0.035,
+      opacity: 0.02,
       side: THREE.BackSide,
     });
     globeGroup.add(new THREE.Mesh(haloGeo, haloMat));
@@ -159,9 +159,6 @@ export default function SpaceScene({ showGlobe = true }: { showGlobe?: boolean }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Toggling visibility here (rather than tearing down and rebuilding the
-  // whole scene) is what lets the canvas stay persistent across route
-  // changes — the globe just hides/shows, no context recreation, no flicker.
   useEffect(() => {
     if (globeGroupRef.current) {
       globeGroupRef.current.visible = showGlobe;
