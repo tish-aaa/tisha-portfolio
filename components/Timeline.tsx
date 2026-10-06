@@ -8,16 +8,68 @@ type Milestone = {
   title: string;
   org: string;
   desc: string;
+  // 'professional' = paid work / formal credential (amber).
+  // 'leadership'   = leadership, competitions, community (cyan).
+  track: 'professional' | 'leadership';
 };
 
 const milestones: Milestone[] = [
-  { date: 'Feb 2023', title: 'Research', org: 'Aavishkaar, Kelkar', desc: 'Formulated a novel idea with societal impact and carried it through presentation and implementation.' },
-  { date: 'Jul–Aug 2023', title: 'Web Dev Intern', org: 'Indobricks', desc: 'Researched, designed, and built websites using Wix, HTML, CSS, and Bootstrap 5.' },
-  { date: 'Jan–Mar 2024', title: 'Web Dev Tester & Intern', org: 'Variety Tech', desc: 'Tested Ireland-based client sites for functionality, usability, and quality alongside the dev team.' },
-  { date: 'Apr 2024 — present', title: 'Full Stack Developer specialized in Front-end', org: 'Variety Tech', desc: 'Building web tools and interfaces for Ireland-based clients — car configurators, lead-gen forms, and more.' },
-  { date: '2025', title: 'BSc IT Graduate', org: 'V.G. Vaze Kelkar', desc: '9.1 CGPA. Convocation done, degree in hand.' },
-  { date: '2026', title: 'BOD, Club Service', org: 'Rotaract Club of Thane North End', desc: 'Leading service projects, coordinating volunteers, planning and budgeting initiatives.' },
-  { date: 'Now', title: 'Building', org: 'India Data Center Transparency Tracker', desc: 'A crowdsourced platform tracking data center construction against drought and groundwater-stress risk.' },
+  {
+    date: 'Nov 2022 – Jan 2025',
+    title: 'Head, Inventrix',
+    org: 'V.G. Vaze Kelkar College',
+    desc: 'Led a 35-member team organizing Inventrix, an annual IT event for 100+ participants.',
+    track: 'leadership',
+  },
+  {
+    date: 'Feb 2023',
+    title: '2nd Prize, Aavishkaar Research Competition',
+    org: 'V.G. Vaze Kelkar College',
+    desc: 'Won 2nd prize for "My PolluTrack," a concept device to track an individual vehicle\'s contribution to local air quality — selected for the district level.',
+    track: 'leadership',
+  },
+  {
+    date: 'Jul–Aug 2023',
+    title: 'Web Dev Intern',
+    org: 'Indobricks',
+    desc: 'Researched, designed, and built websites using Wix, HTML, CSS, and Bootstrap 5.',
+    track: 'professional',
+  },
+  {
+    date: 'Jan–Apr 2024',
+    title: 'Web Dev Tester & Intern',
+    org: 'Variety Tech',
+    desc: 'Tested Ireland-based client sites for functionality, usability, and quality alongside the dev team.',
+    track: 'professional',
+  },
+  {
+    date: 'Apr 2024 – Feb 2025',
+    title: 'Web Developer',
+    org: 'Variety Tech Consultants',
+    desc: 'Building and maintaining websites for Ireland-based car dealerships.',
+    track: 'professional',
+  },
+  {
+    date: 'Apr 2025 — present',
+    title: 'Full Stack Developer specialized in Front-end',
+    org: 'Variety Tech Consultants',
+    desc: 'Fixes UI and functional bugs independently and extends legacy PHP/Laravel code without breaking existing behavior. Works across a shared base-template architecture, handles pre-launch QA, and built a multi-step review-submission flow with two new modals ahead of the existing form.',
+    track: 'professional',
+  },
+  {
+    date: '2025',
+    title: 'BSc IT Graduate',
+    org: 'V.G. Vaze Kelkar College',
+    desc: '9.1 CGPA. Convocation done, degree in hand.',
+    track: 'professional',
+  },
+  {
+    date: 'Jul 2026 — present',
+    title: 'Director, Club Service',
+    org: 'Rotaract Club of Thane North End',
+    desc: 'Leading service projects, coordinating volunteers, and planning and budgeting initiatives. Chaired the club\'s 15th Installation Ceremony in Aug 2026, hosting 50+ attendees.',
+    track: 'leadership',
+  },
 ];
 
 export default function Timeline() {
@@ -51,7 +103,7 @@ export default function Timeline() {
 
         <div className="flex flex-col gap-16">
           {milestones.map((ms, i) => (
-            <TimelineRow key={ms.title} milestone={ms} index={i} progress={scrollYProgress} total={milestones.length} isMostRecent={i === milestones.length - 1} />
+            <TimelineRow key={ms.title} milestone={ms} index={i} progress={scrollYProgress} total={milestones.length} />
           ))}
         </div>
       </div>
@@ -64,18 +116,17 @@ function TimelineRow({
   index,
   progress,
   total,
-  isMostRecent,
 }: {
   milestone: Milestone;
   index: number;
   progress: MotionValue<number>;
   total: number;
-  isMostRecent: boolean;
 }) {
   const isRight = index % 2 === 1;
   const activeAt = index / (total - 1);
-  const activeColor = isMostRecent ? '#FFDF00' : '#1FDCD2';
-  const activeGlow = isMostRecent ? '245,166,35' : '31,220,210';
+  const isProfessional = milestone.track === 'professional';
+  const activeColor = isProfessional ? '#F5A623' : '#1FDCD2';
+  const activeGlow = isProfessional ? '245,166,35' : '31,220,210';
   const nodeColor = useTransform(progress, [Math.max(0, activeAt - 0.03), activeAt], ['#8E9096', activeColor]);
   const nodeGlow = useTransform(
     progress,
@@ -97,9 +148,11 @@ function TimelineRow({
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`pl-8 md:pl-0 ${isRight ? 'md:col-start-2 md:pl-16' : 'md:col-start-1 md:pr-16 md:text-right'}`}
       >
-        <div className="text-[13px] uppercase tracking-[0.12em] text-accent">{milestone.date}</div>
+        <div className={`text-[13px] uppercase tracking-[0.12em] ${isProfessional ? 'text-amber' : 'text-accent'}`}>
+          {milestone.date}
+        </div>
         <div className="mt-2 font-garamond text-[24px] font-semibold text-silver-light">{milestone.title}</div>
-        <div className="mt-1 text-[14px] text-silver-dim">{milestone.org}</div>
+        {milestone.org && <div className="mt-1 text-[14px] text-silver-dim">{milestone.org}</div>}
         <p className={`mt-3 max-w-[380px] text-[14px] leading-relaxed text-silver-body ${isRight ? '' : 'md:ml-auto'}`}>
           {milestone.desc}
         </p>
