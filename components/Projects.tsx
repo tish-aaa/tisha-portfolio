@@ -3,6 +3,7 @@ import Link from 'next/link';
 type Project = {
   slug: string;
   title: string;
+  eyebrow?: string;
   tags: string[];
   desc: string;
   titleColor: 'accent' | 'amber';
@@ -21,17 +22,18 @@ const projects: Project[] = [
     external: true,
   },
   {
-    slug: 'site-scraper',
-    title: 'Image Scraper Pipeline',
-    tags: ['Python', 'Playwright', 'PHP', 'DOMXPath'],
-    desc: 'A dual-language scraper — Python drives a real browser in stealth mode, PHP parses static HTML directly. Built to pull listing images off classifieds sites reliably.',
+    slug: 'outfit-maven',
+    title: 'Outfit Maven',
+    eyebrow: 'Final Year Capstone Project',
+    tags: ['Flutter', 'Dart', 'PHP', 'MySQL', 'MongoDB', 'Firebase', 'Razorpay'],
+    desc: 'Solo-built, research-driven fashion social-commerce app — feed, checkout, and a quiz engine for outfit recs. 90% complete.',
     titleColor: 'accent',
   },
   {
-    slug: 'outfit-maven',
-    title: 'Outfit Maven',
-    tags: ['Flutter', 'Dart', 'PHP', 'MySQL', 'MongoDB', 'Razorpay'],
-    desc: 'Solo-built, research-driven fashion social-commerce app — feed, checkout, and a quiz engine for outfit recs. 90% complete.',
+    slug: 'site-scraper',
+    title: 'Image Scraper Pipeline',
+    tags: ['Python', 'Playwright', 'PHP', 'DOMXPath'],
+    desc: 'A dual-language scraper that bulk-extracts and downloads images from JS-rendered and static sites alike — Python drives a real browser in stealth mode for JS-heavy pages, PHP parses static HTML directly for simpler ones.',
     titleColor: 'accent',
   },
 ];
@@ -58,6 +60,11 @@ export default function Projects() {
               className="flex items-center justify-between py-8 transition-colors hover:bg-silver-dim/5"
             >
               <div>
+                {project.eyebrow && (
+                  <div className="mb-1.5 text-[11px] uppercase tracking-[0.1em] text-silver-dim">
+                    {project.eyebrow}
+                  </div>
+                )}
                 <div
                   className={`font-garamond text-[32px] font-semibold transition-colors sm:text-[44px] ${
                     project.titleColor === 'amber' ? 'text-amber' : 'text-accent'
