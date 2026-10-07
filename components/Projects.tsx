@@ -6,9 +6,20 @@ type Project = {
   tags: string[];
   desc: string;
   titleColor: 'accent' | 'amber';
+  href?: string;
+  external?: boolean;
 };
 
 const projects: Project[] = [
+  {
+    slug: 'rctne-site',
+    title: 'RCTNE Club Website',
+    tags: ['Next.js'],
+    desc: "An open-source contribution to my club's website — I collaborate on fixes and features, using Google's Antigravity agentic IDE to scope changes and implement them directly.",
+    titleColor: 'accent',
+    href: 'https://rctne.vercel.app/',
+    external: true,
+  },
   {
     slug: 'site-scraper',
     title: 'Image Scraper Pipeline',
@@ -41,7 +52,9 @@ export default function Projects() {
         {projects.map((project) => (
           <div key={project.slug} className="group relative border-b border-silver-dim/20">
             <Link
-              href={`/projects/${project.slug}`}
+              href={project.href ?? `/projects/${project.slug}`}
+              target={project.external ? '_blank' : undefined}
+              rel={project.external ? 'noopener noreferrer' : undefined}
               className="flex items-center justify-between py-8 transition-colors hover:bg-silver-dim/5"
             >
               <div>
@@ -61,7 +74,7 @@ export default function Projects() {
                 </div>
               </div>
               <span className="hidden text-silver-dim transition-colors group-hover:text-accent sm:block">
-                View →
+                {project.external ? 'Visit ↗' : 'View →'}
               </span>
             </Link>
 
