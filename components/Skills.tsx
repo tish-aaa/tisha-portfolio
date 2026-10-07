@@ -19,12 +19,18 @@ const NODE_OFFSETS: [number, number][] = [
   [-85, 0],
 ];
 
-// Desktop: clusters zig-zag left-to-right across a wide viewBox.
+// Desktop: 4 original clusters zig-zag across row one (low/high/low/high).
+// Row two continues that alternation and aligns column-wise with row
+// one: Databases sits directly under Back-end & Data (same x, 790) —
+// a deliberate pairing, not just visual symmetry, since the two are
+// thematically related. Mobile & Systems falls under Frameworks' column.
 const desktopGroups: SkillGroup[] = [
   { label: 'Core', icon: '✦', center: [170, 330], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], color: 'amber' },
   { label: 'Frameworks', icon: '◆', center: [470, 150], skills: ['jQuery', 'Laravel', 'Next.js', 'React'], color: 'amber' },
-  { label: 'Back-end & Data', icon: '●', center: [790, 330], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
+  { label: 'Back-end & Data', icon: '●', center: [790, 330], skills: ['PHP', 'Python', 'Networking', 'Tailwind CSS'], color: 'amber' },
   { label: 'Tools', icon: '▲', center: [1080, 150], skills: ['Git', 'VS Code', 'Power BI', 'Excel'], color: 'amber' },
+  { label: 'Mobile & Systems', icon: '◇', center: [470, 530], skills: ['C', 'C++', 'Flutter', 'Dart'], color: 'accent' },
+  { label: 'Databases', icon: '■', center: [790, 650], skills: ['SQL', 'MySQL', 'MongoDB', 'Firebase'], color: 'accent' },
 ];
 
 // Mobile: same clusters, same skills, just stacked vertically in a
@@ -33,18 +39,20 @@ const desktopGroups: SkillGroup[] = [
 const mobileGroups: SkillGroup[] = [
   { label: 'Core', icon: '✦', center: [200, 160], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], color: 'amber' },
   { label: 'Frameworks', icon: '◆', center: [200, 540], skills: ['jQuery', 'Laravel', 'Next.js', 'React'], color: 'amber' },
-  { label: 'Back-end & Data', icon: '●', center: [200, 920], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
+  { label: 'Back-end & Data', icon: '●', center: [200, 920], skills: ['PHP', 'Python', 'Networking', 'Tailwind CSS'], color: 'amber' },
   { label: 'Tools', icon: '▲', center: [200, 1300], skills: ['Git', 'VS Code', 'Power BI', 'Excel'], color: 'amber' },
+  { label: 'Databases', icon: '■', center: [200, 1680], skills: ['SQL', 'MySQL', 'MongoDB', 'Firebase'], color: 'accent' },
+  { label: 'Mobile & Systems', icon: '◇', center: [200, 2060], skills: ['C', 'C++', 'Flutter', 'Dart'], color: 'accent' },
 ];
 
-// Tablet (768–1199px): a 2×2 grid instead of either the wide zig-zag
-// (too cramped at this width) or the tall vertical stack (wastes the
-// extra horizontal room an iPad actually has).
+// Tablet (768–1199px): 2-column, 3-row grid
 const tabletGroups: SkillGroup[] = [
   { label: 'Core', icon: '✦', center: [220, 220], skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], color: 'amber' },
   { label: 'Frameworks', icon: '◆', center: [620, 220], skills: ['jQuery', 'Laravel', 'Next.js', 'React'], color: 'amber' },
-  { label: 'Back-end & Data', icon: '●', center: [220, 680], skills: ['PHP', 'SQL', 'Python', 'Networking'], color: 'amber' },
+  { label: 'Back-end & Data', icon: '●', center: [220, 680], skills: ['PHP', 'Python', 'Networking', 'Tailwind CSS'], color: 'amber' },
   { label: 'Tools', icon: '▲', center: [620, 680], skills: ['Git', 'VS Code', 'Power BI', 'Excel'], color: 'amber' },
+  { label: 'Databases', icon: '■', center: [220, 1140], skills: ['SQL', 'MySQL', 'MongoDB', 'Firebase'], color: 'accent' },
+  { label: 'Mobile & Systems', icon: '◇', center: [620, 1140], skills: ['C', 'C++', 'Flutter', 'Dart'], color: 'accent' },
 ];
 
 // Text halo — a dark stroke drawn behind each label so it stays readable
@@ -95,69 +103,74 @@ function ConstellationSVG({
         strokeWidth={1}
       />
 
-      {groups.map((group) => (
-        <g key={group.label}>
-          <text
-            x={group.center[0]}
-            y={group.center[1] - 118}
-            textAnchor="middle"
-            className={`${group.color === 'amber' ? 'fill-amber' : 'fill-accent'} uppercase tracking-[0.1em]`}
-            style={{ ...textHalo, fontSize: labelSize, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}
-          >
-            {group.icon} {group.label}
-          </text>
+      {groups.map((group) => {
+        const isAmber = group.color === 'amber';
+        const lineColor = isAmber ? '#FFDF00' : '#1FDCD2';
 
-          {group.skills.map((skill, i) => {
-            const [dx, dy] = NODE_OFFSETS[i];
-            const x = group.center[0] + dx;
-            const y = group.center[1] + dy;
-            const delay = nodeIndex * 90;
-            nodeIndex += 1;
-            const twinkleDelay = (nodeIndex * 0.37) % 3;
+        return (
+          <g key={group.label}>
+            <text
+              x={group.center[0]}
+              y={group.center[1] - 118}
+              textAnchor="middle"
+              className={`${isAmber ? 'fill-amber' : 'fill-accent'} uppercase tracking-[0.1em]`}
+              style={{ ...textHalo, fontSize: labelSize, opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease' }}
+            >
+              {group.icon} {group.label}
+            </text>
 
-            return (
-              <g
-                key={skill}
-                className="group cursor-default"
-                style={{
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.85)',
-                  transformOrigin: `${x}px ${y}px`,
-                  transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
-                }}
-              >
-                <line
-                  x1={group.center[0]}
-                  y1={group.center[1]}
-                  x2={x}
-                  y2={y}
-                  stroke={group.color === 'amber' ? '#FFDF00' : '#8E9096'}
-                  strokeOpacity={group.color === 'amber' ? 0.35 : 0.3}
-                  strokeWidth={1}
-                  className={`transition-all duration-300 group-hover:stroke-opacity-80 ${group.color === 'amber' ? 'group-hover:stroke-amber' : 'group-hover:stroke-accent'}`}
-                />
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={4.5}
-                  filter={`url(#${glowId})`}
-                  className={`transition-all duration-300 ${group.color === 'amber' ? 'fill-amber group-hover:fill-amber' : 'fill-silver group-hover:fill-accent'}`}
-                  style={{ animation: `twinkle 3.2s ease-in-out ${twinkleDelay}s infinite` }}
-                />
-                <text
-                  x={x}
-                  y={y - 16}
-                  textAnchor="middle"
-                  className="fill-silver-body font-garamond transition-all duration-300 group-hover:fill-silver-light"
-                  style={{ ...textHalo, fontSize: skillSize }}
+            {group.skills.map((skill, i) => {
+              const [dx, dy] = NODE_OFFSETS[i];
+              const x = group.center[0] + dx;
+              const y = group.center[1] + dy;
+              const delay = nodeIndex * 90;
+              nodeIndex += 1;
+              const twinkleDelay = (nodeIndex * 0.37) % 3;
+
+              return (
+                <g
+                  key={skill}
+                  className="group cursor-default"
+                  style={{
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.85)',
+                    transformOrigin: `${x}px ${y}px`,
+                    transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
+                  }}
                 >
-                  {skill}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-      ))}
+                  <line
+                    x1={group.center[0]}
+                    y1={group.center[1]}
+                    x2={x}
+                    y2={y}
+                    stroke={lineColor}
+                    strokeOpacity={0.35}
+                    strokeWidth={1}
+                    className="transition-all duration-300 group-hover:stroke-opacity-80"
+                  />
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r={4.5}
+                    filter={`url(#${glowId})`}
+                    className={`transition-all duration-300 ${isAmber ? 'fill-amber' : 'fill-accent'}`}
+                    style={{ animation: `twinkle 3.2s ease-in-out ${twinkleDelay}s infinite` }}
+                  />
+                  <text
+                    x={x}
+                    y={y - 16}
+                    textAnchor="middle"
+                    className="fill-silver-body font-garamond transition-all duration-300 group-hover:fill-silver-light"
+                    style={{ ...textHalo, fontSize: skillSize }}
+                  >
+                    {skill}
+                  </text>
+                </g>
+              );
+            })}
+          </g>
+        );
+      })}
     </svg>
   );
 }
@@ -197,7 +210,7 @@ export default function Skills() {
           there's no crowding to worry about in a single column */}
       <ConstellationSVG
         groups={mobileGroups}
-        viewBox="0 0 400 1450"
+        viewBox="0 0 400 2250"
         visible={visible}
         className="w-full md:hidden"
         glowId="glow-mobile"
@@ -205,19 +218,20 @@ export default function Skills() {
         skillSize={21}
       />
 
-      {/* Tablet (768–1199px): 2×2 grid */}
+      {/* Tablet (768–1199px): 2-column, 3-row grid */}
       <ConstellationSVG
         groups={tabletGroups}
-        viewBox="0 0 840 900"
+        viewBox="0 0 840 1400"
         visible={visible}
         className="hidden w-full md:block min-[1200px]:hidden"
         glowId="glow-tablet"
       />
 
-      {/* Desktop (1200px+): wide zig-zag */}
+      {/* Desktop (1200px+): zig-zag continues across both rows,
+          column-aligned with row one */}
       <ConstellationSVG
         groups={desktopGroups}
-        viewBox="0 0 1200 480"
+        viewBox="0 0 1200 950"
         visible={visible}
         className="hidden w-full min-[1200px]:block"
         glowId="glow-desktop"
