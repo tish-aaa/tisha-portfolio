@@ -57,7 +57,7 @@ export default function Projects() {
               href={project.href ?? `/projects/${project.slug}`}
               target={project.external ? '_blank' : undefined}
               rel={project.external ? 'noopener noreferrer' : undefined}
-              className="flex items-center justify-between py-8 transition-colors hover:bg-silver-dim/5"
+              className="flex w-full items-center justify-between py-8 transition-colors hover:bg-silver-dim/5"
             >
               <div>
                 {project.eyebrow && (
