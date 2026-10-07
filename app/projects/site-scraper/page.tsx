@@ -6,7 +6,7 @@ export default function SiteScraperPage() {
     <>
       <Nav />
       <main className="min-h-screen bg-obsidian/85 px-[6vw] py-24 text-silver-light">
-      <Link href="/#projects" className="text-[13px] text-silver-dim transition-colors hover:text-accent">
+      <Link href="/#projects" className="relative z-10 text-[13px] text-silver-dim transition-colors hover:text-accent">
         ← Back home
       </Link>
 
